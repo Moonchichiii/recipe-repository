@@ -50,13 +50,34 @@
 
 ## Design and Planning Stages
 
-
-
+***Mockups before building the prebuild***
 <p>
- <img src="/readmecontent/images/balsamiq1.png" alt="Image 10" width="360"/>
- 
- 
- </p>
+Landing page.
+</p>
+<p>
+
+<img  src="/readmecontent/images/Screenshot174638.png"  alt="Image 1"  width="360"/>
+</p>
+After registration or login.
+<p>
+
+<img  src="/readmecontent/images/Screenshot174830.png"  alt="Image 2"  width="360"/>
+</p>
+Mobile Layout
+<p>
+
+<img  src="/readmecontent/images/Screenshot175257.png"  alt="Image 3"  width="360"/>
+</p>
+Color Layout
+<p>
+
+<img  src="/readmecontent/images/Screenshot182243.png"  alt="Image 4"  width="360"/>
+</p>
+Prebuild using codepen.io
+<p>
+
+<img  src="/readmecontent/images/Screenshot131118.png"  alt="Image 5"  width="360"/>
+</p>
 
 [Back to top](#table-of-contents)
 
