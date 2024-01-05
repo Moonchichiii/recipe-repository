@@ -1,4 +1,4 @@
- /* Css structure
+/* Css structure
    1. Root variables, Typography
    2. Reset styles
    3. Base styles
@@ -10,15 +10,15 @@
 
 /* 1. Root Variables and Typography */
 :root {
-    --main-bg-color: #3d3d3d;
+    --main-bg-color: #2D3250;
     --main-text-bg-color:#5a5a5a;
     --footer-text-color:#4a4a4a;
     --reg-header-text-color: #F2932E;
     --search-bar-bg-color-mobile:#DDDDDD;
     --nav-link: #F6C500;
     --nav-link-hover:#FBAC82;
-    --navbrand-color:  #ffcc99;
-    --navbar-toggle-icon-color:#ffcc99;
+    --navbrand-color:#d67d0e;    
+    --navbar-toggle-icon-color:#d67d0e;
     --button-bg-color: #F9EBCD;
     --button-bg-color-hover: #F78C56;
     --footer-bg-color: #643A99;
@@ -68,12 +68,14 @@ html, body {
 body {
     display: flex; 
     flex-direction: column; 
-    justify-content: center;
 }
 
 /* 4. Main Layout */
     
+.NavScrollExample {
     
+}
+
 .footer {
     background-color: var(--footer-bg-color); 
     color: var(--footer-text); 

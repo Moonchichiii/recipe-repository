@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Example from './components/Modal/AuthModal'; 
-import OffcanvasExample from './components/NavBar/NavBar'
+import NavScrollExample from './components/NavBar/NavBar'
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,14 +17,16 @@ function App() {
   const handleClose = () => setShow(false);
 
   return (
-    <div className="App">
-        <OffcanvasExample />
+    <>
+    
+     <NavScrollExample />
+    
       <h1>Recipe Respository</h1>
       <Button variant="primary" onClick={handleShow}>
         Accounts
       </Button>
       <Example show={show} handleClose={handleClose} />
-    </div>
+    </>
   );
 }
 
