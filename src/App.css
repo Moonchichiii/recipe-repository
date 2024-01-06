@@ -54,10 +54,15 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;  
 }
 
+th {
+    text-align: inherit;
+}
 
 /* 3. Base Styles */
 html, body {
-    height: 100%; 
+    height: 100vh; 
+    -webkit-tap-highlight-color: transparent;
+    text-size-adjust: 100%;
     font-family: 'Afacad', sans-serif;
     font-size: var(--font-regular);
     line-height: 1.6;

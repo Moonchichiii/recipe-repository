@@ -26,8 +26,7 @@ function LoginForm() {
                 const { token } = response.data;
                 localStorage.setItem('token', token);
                 setAuthToken(token);
-                handleLogin(response.data);
-                console.log('User logged in successfully!');
+                handleLogin(response.data);                
             })
             .catch(error => {
                 if (error.response && error.response.data) {
