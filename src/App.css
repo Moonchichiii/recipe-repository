@@ -79,79 +79,7 @@ body {
 }
 
     
-    
-    
-/* 5. Navigation */
-.navbar {
-    background-color: var(--main-bg-color)!important;     
-    font-size: var(--font-regular);
-    font-weight: 500;
-}
-
-.nav-link {
-    color: var(--nav-link)!important;
-    position: relative; 
-    display: inline-block; 
-    padding-bottom: 2px;
-    transition: color 200ms ease-in-out; 
-}
-
-.nav-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0%; 
-    height: 0.5px;
-    background: var(--nav-link-hover); 
-    transition: width 200ms ease-in-out; 
-}
-
-.nav-link:hover,
-.nav-link:focus {
-    color: var(--nav-link-hover)!important; 
-}
-
-.nav-link:hover::after,
-.nav-link:focus::after {
-    width: 100%; 
-}
-
-
-.nav-link:hover::after,
-.nav-link:focus::after {
-    width: 100%; 
-}
-
-    
-    
-     
-.searchbar-container .input-group {
-  position: relative;
-  
-}
-
-.searchbar-container .input-group .form-control {    
-    padding-right: 1.5rem;     
-   width: 200px;
-    height: 35px; 
-}
-.searchbar-container .input-group .form-control:focus {
-            outline: none;
-            box-shadow: 0 0 0 1px var(--nav-link);
-        }
-.searchbar-container .input-group button {
-    position: absolute;
-    right: 0;
-    top: 0;    
-    height: 100%;
-    z-index: 10;
-  
-}
-.searchbar-container .input-group button {
-    outline: none; 
-    cursor: pointer;
-}    
+ 
 
 /* 6. Components */
     
@@ -166,3 +94,5 @@ body {
     background-color: var(--button-bg-color-hover); 
     color: white; 
 }
+
+

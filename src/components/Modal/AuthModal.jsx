@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import LoginForm from '../Auth/LoginForm/LoginForm';  
 import RegistrationForm from '../Auth/RegistrationForm/RegistrationForm';
 
+import './AuthModal.module.css';
+
 function AuthModal({ show, handleClose }) {
   const [isLoginActive, setIsLoginActive] = useState(true);
 
@@ -18,8 +20,8 @@ function AuthModal({ show, handleClose }) {
       centered 
     >
       <Modal.Header closeButton>
-        <Modal.Title className="reg-header">
-          {isLoginActive ? 'Login' : 'Register'}
+        <Modal.Title className="reg-header">        
+          {isLoginActive ? 'Login / Sign up' : 'Sign up'}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -42,9 +44,7 @@ function AuthModal({ show, handleClose }) {
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
+     
       </Modal.Footer>
     </Modal>
   );

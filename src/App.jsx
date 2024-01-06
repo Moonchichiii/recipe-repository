@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import AuthModal from './components/Modal/AuthModal'; 
+import React, { useState, Suspense } from 'react';
 import Button from 'react-bootstrap/Button';
 import { AuthProvider } from './components/Auth/Contexts/AuthContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+
 
 function App() {
   
@@ -9,23 +11,24 @@ function App() {
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
-
+  
+  const AuthModal = React.lazy(() => import('./components/Modal/AuthModal'));
+  
   return (
-<>
-<AuthProvider>
-
-
+    <>
+      <AuthProvider>
         <Button variant="primary" onClick={handleShowModal}>
-
           Accounts
-
         </Button>
 
-        <AuthModal show={showModal} handleClose={handleCloseModal} />
-
-    </AuthProvider>
+        {showModal && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <AuthModal show={showModal} handleClose={handleCloseModal} />
+          </Suspense>
+        )}
+      </AuthProvider>
     </>
-          );
+  );
 }
 
 export default App;
