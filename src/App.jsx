@@ -1,31 +1,21 @@
 import React, { useState } from 'react';
-
-import Example from './components/Modal/AuthModal'; 
-import NavScrollExample from './components/NavBar/NavBar'
-
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
+
+import LoginForm from './components/Auth/LoginForm/LoginForm'
+import RegistrationForm from './components/Auth/RegistrationForm/RegistrationForm'
 
 
 
 
 function App() {
-  const [show, setShow] = useState(false);
-
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
 
   return (
     <>
     
-     <NavScrollExample />
+    <LoginForm />
+
+    <RegistrationForm />
     
-      <h1>Recipe Respository</h1>
-      <Button variant="primary" onClick={handleShow}>
-        Accounts
-      </Button>
-      <Example show={show} handleClose={handleClose} />
     </>
   );
 }
