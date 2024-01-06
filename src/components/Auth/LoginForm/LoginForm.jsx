@@ -2,15 +2,17 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Alert } from 'react-bootstrap';
 
-import { login, setAuthToken } from './';
+import { AuthContext } from '../../contexts/AuthContext';
+import { login, setAuthToken } from '../../service/Api/Api';
 
-function Login({ closeModal }) {
 
+
+
+function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { handleLogin } = useContext(AuthContext);
     const [error, setError] = useState('');
-    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,8 +22,7 @@ function Login({ closeModal }) {
                 localStorage.setItem('token', token);
                 setAuthToken(token);
                 handleLogin(response.data);
-                setIsLoggedIn(true);
-                closeModal();
+                console.log('User logged in successfully!');
             })
             .catch(error => {
                 if (error.response && error.response.data) {
@@ -74,4 +75,4 @@ function Login({ closeModal }) {
     );
 }
 
-export default Login;
+export default LoginForm;

@@ -1,27 +1,23 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Alert } from 'react-bootstrap';
-import { AuthContext } from '../Contexts/AuthContext';
-import { register } from '../../../service/Api/Api';
+
+import { AuthContext } from '../../contexts/AuthContext';
+import { login, register, setAuthToken } from '../../service/Api/Api';
 
 
 
-function SignUp({ closeModal }) {
-
-
+function RegistrationForm() {
     const [username, setUsername] = useState('');
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     const [confirmPassword, setConfirmPassword] = useState('');
-
     const [error, setError] = useState('');
-
+    const [isRegistered, setIsRegistered] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-
     const { handleRegister } = useContext(AuthContext);
-    const navigate = useNavigate();
+    
+    //const navigate = useNavigate(); 
 
     const validateInputs = () => {
 
@@ -38,19 +34,13 @@ function SignUp({ closeModal }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setError('');
         if (!validateInputs()) return;
-
         setIsLoading(true);
         register(username, email, password, confirmPassword)
             .then(response => {
-
                 localStorage.setItem('token', response.data.token);
                 handleRegister(response.data);                
                 setIsRegistered(true);
-                //navigate('/ProfileSetup');
-                closeModal();
-
             })
             .catch(err => {
                 if (err.response && err.response.data) {
@@ -126,4 +116,4 @@ function SignUp({ closeModal }) {
     );
 }
 
-export default SignUp;
+export default RegistrationForm;
