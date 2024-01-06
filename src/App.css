@@ -1,4 +1,4 @@
-/* Css structure
+  /* Css structure
    1. Root variables, Typography
    2. Reset styles
    3. Base styles
@@ -13,12 +13,12 @@
     --main-bg-color: #2D3250;
     --main-text-bg-color:#5a5a5a;
     --footer-text-color:#4a4a4a;
-    --reg-header-text-color: #F2932E;
+    --reg-header-text-color:#d67d0e;
     --search-bar-bg-color-mobile:#DDDDDD;
-    --nav-link: #F6C500;
+    --nav-link: #F6C500;  
     --nav-link-hover:#FBAC82;
     --navbrand-color:#d67d0e;    
-    --navbar-toggle-icon-color:#d67d0e;
+    --navbar-toggle-icon-color:#ffcc99;
     --button-bg-color: #F9EBCD;
     --button-bg-color-hover: #F78C56;
     --footer-bg-color: #643A99;
@@ -71,9 +71,98 @@ body {
 }
 
 /* 4. Main Layout */
-   
-
+    
+    
 .footer {
     background-color: var(--footer-bg-color); 
     color: var(--footer-text); 
+}
+
+    
+    
+    
+/* 5. Navigation */
+.navbar {
+    background-color: var(--main-bg-color)!important;     
+    font-size: var(--font-regular);
+    font-weight: 500;
+}
+
+.nav-link {
+    color: var(--nav-link)!important;
+    position: relative; 
+    display: inline-block; 
+    padding-bottom: 2px;
+    transition: color 200ms ease-in-out; 
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%; 
+    height: 0.5px;
+    background: var(--nav-link-hover); 
+    transition: width 200ms ease-in-out; 
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--nav-link-hover)!important; 
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+    width: 100%; 
+}
+
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+    width: 100%; 
+}
+
+    
+    
+     
+.searchbar-container .input-group {
+  position: relative;
+  
+}
+
+.searchbar-container .input-group .form-control {    
+    padding-right: 1.5rem;     
+   width: 200px;
+    height: 35px; 
+}
+.searchbar-container .input-group .form-control:focus {
+            outline: none;
+            box-shadow: 0 0 0 1px var(--nav-link);
+        }
+.searchbar-container .input-group button {
+    position: absolute;
+    right: 0;
+    top: 0;    
+    height: 100%;
+    z-index: 10;
+  
+}
+.searchbar-container .input-group button {
+    outline: none; 
+    cursor: pointer;
+}    
+
+/* 6. Components */
+    
+/* Buttons */
+.btn-primary {
+    background-color: var(--button-bg-color); 
+    color: var(--main-bg-color);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--button-bg-color-hover); 
+    color: white; 
 }
