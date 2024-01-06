@@ -2,13 +2,18 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Alert } from 'react-bootstrap';
 
-import { AuthContext } from '../../contexts/AuthContext';
-import { login, setAuthToken } from '../../service/Api/Api';
+import { AuthContext } from '../Contexts/AuthContext';
 
+
+import { login, setAuthToken } from '../Api/Api';
+
+ 
 
 
 
 function LoginForm() {
+    const { isAuthenticated } = useContext(AuthContext);
+    const isLoggedIn = isAuthenticated;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { handleLogin } = useContext(AuthContext);

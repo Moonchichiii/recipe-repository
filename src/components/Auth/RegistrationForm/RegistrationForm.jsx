@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Alert } from 'react-bootstrap';
 
-import { AuthContext } from '../../contexts/AuthContext';
-import { login, register, setAuthToken } from '../../service/Api/Api';
+import { AuthContext } from '../Contexts/AuthContext';
+import { login, register, setAuthToken } from '../Api/Api';
 
 
 

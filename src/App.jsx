@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthProvider } from './contexts/AuthContext';
+import { AuthProvider } from './components/Auth/Contexts/AuthContext';
 import LoginForm from './components/Auth/LoginForm/LoginForm';
 import RegistrationForm from './components/Auth/RegistrationForm/RegistrationForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
