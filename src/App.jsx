@@ -27,6 +27,8 @@ function App() {
           </Suspense>
         )}
       </AuthProvider>
+      
+      <ProtectedRoute path="/dashboard" component={Dashboard} />    
     </>
   );
 }
