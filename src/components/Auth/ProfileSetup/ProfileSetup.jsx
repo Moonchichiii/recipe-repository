@@ -8,7 +8,6 @@ import { setupProfile } from '../../../service/Api';
 
 function ProfileSetup() {
     const defaultImageUrl = import.meta.env.VITE_DEFAULT_IMG_URL;
-    const defaultImageUrl = VITE_DEFAULT_IMG_URL; 
     const [bio, setBio] = useState('');
     const [profileImagePreview, setProfileImagePreview] = useState(defaultImageUrl); 
     const [profileImage, setProfileImage] = useState(null);
