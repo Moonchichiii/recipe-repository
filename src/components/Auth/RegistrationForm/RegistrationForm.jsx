@@ -41,7 +41,7 @@ function RegistrationForm({ onSuccessfulRegistration }) {
                 localStorage.setItem('token', response.data.token);
                 handleRegister(response.data);                
                 setIsRegistered(true);
-                onSuccessfulRegistration()
+                onSuccessfulRegistration();
             })
             .catch(err => {
                 if (err.response && err.response.data) {

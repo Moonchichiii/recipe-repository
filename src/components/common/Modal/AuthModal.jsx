@@ -16,7 +16,7 @@ function AuthModal({ show, handleClose }) {
 
     const handleSuccessfulRegistration = () => {
         setShowProfileSetup(true);
-        handleClose();
+      
     };
 
     return (
