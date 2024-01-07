@@ -12,7 +12,7 @@ function App() {
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
   
-  const AuthModal = React.lazy(() => import('./components/Modal/AuthModal'));
+  const AuthModal = React.lazy(() => import('./components/common/Modal/AuthModal'));
   
   return (
     <>

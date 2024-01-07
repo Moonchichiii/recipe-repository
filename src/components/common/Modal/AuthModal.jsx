@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import LoginForm from '../Auth/LoginForm/LoginForm';  
-import RegistrationForm from '../Auth/RegistrationForm/RegistrationForm';
+import LoginForm from '../../Auth/LoginForm/LoginForm';  
+import RegistrationForm from '../../Auth/RegistrationForm/RegistrationForm';
+import google from '../assets/web_dark_rd_SI@1x.png';
 
 import './AuthModal.module.css';
 
@@ -31,6 +32,8 @@ function AuthModal({ show, handleClose }) {
             <div className="mt-3 text-center">
               Don't have an account? 
               <Button variant="link" onClick={toggleForm}>Sign up</Button>
+              <img src={google} alt="Social login with google" />
+              
             </div>
           </>
         ) : (
