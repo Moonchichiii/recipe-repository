@@ -21,7 +21,7 @@ function ProfileSetup() {
 
         try {
             const response = await axios.post(
-                'https://api.cloudinary.com/v1_1/dakjlrean/profile_images/',
+                'https://api.cloudinary.com/v1_1/dakjlrean/image/upload',                
                 formData
             );
             return response.data.secure_url;
