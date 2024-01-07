@@ -14,6 +14,13 @@ function ProfileSetup() {
     const { user } = useContext(AuthContext);
 
     const handleImageUpload = async (file) => {
+        // const { signature, timestamp, api_key } = await getCloudinarySignature();
+        //const formData = new FormData();
+    // formData.append('file', file);
+    // formData.append('signature', signature);
+    // formData.append('timestamp', timestamp);
+        //
+
         const formData = new FormData();
         formData.append('file', file);
         formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
