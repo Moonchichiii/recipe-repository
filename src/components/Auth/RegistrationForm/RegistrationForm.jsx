@@ -8,7 +8,7 @@ import { login, register, setAuthToken } from '../../../service/Api';
 
 
 
-function RegistrationForm() {
+function RegistrationForm({ onSuccessfulRegistration }) {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,7 +17,7 @@ function RegistrationForm() {
     const [isRegistered, setIsRegistered] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const { handleRegister } = useContext(AuthContext);    
-    const navigate = useNavigate();
+    
 
     const validateInputs = () => {
 
@@ -41,7 +41,7 @@ function RegistrationForm() {
                 localStorage.setItem('token', response.data.token);
                 handleRegister(response.data);                
                 setIsRegistered(true);
-                navigate('/profile-setup');
+                onSuccessfulRegistration()
             })
             .catch(err => {
                 if (err.response && err.response.data) {
