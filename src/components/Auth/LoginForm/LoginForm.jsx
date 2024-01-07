@@ -2,10 +2,11 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Alert } from 'react-bootstrap';
 
-import { AuthContext } from '../Contexts/AuthContext';
+import { AuthContext } from '../../../context/AuthContext';
+
+import { login, setAuthToken } from '../../../service/Api';
 
 
-import { login, setAuthToken } from '../Api/Api';
 
  
 
@@ -18,6 +19,7 @@ function LoginForm() {
     const [password, setPassword] = useState('');
     const { handleLogin } = useContext(AuthContext);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,7 +28,8 @@ function LoginForm() {
                 const { token } = response.data;
                 localStorage.setItem('token', token);
                 setAuthToken(token);
-                handleLogin(response.data);                
+                handleLogin(response.data);
+                navigate('/dashboard')
             })
             .catch(error => {
                 if (error.response && error.response.data) {

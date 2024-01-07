@@ -2,8 +2,9 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Alert } from 'react-bootstrap';
 
-import { AuthContext } from '../Contexts/AuthContext';
-import { login, register, setAuthToken } from '../Api/Api';
+import { AuthContext } from '../../../context/AuthContext';
+import { login, register, setAuthToken } from '../../../service/Api';
+
 
 
 
@@ -15,9 +16,8 @@ function RegistrationForm() {
     const [error, setError] = useState('');
     const [isRegistered, setIsRegistered] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const { handleRegister } = useContext(AuthContext);
-    
-    //const navigate = useNavigate(); 
+    const { handleRegister } = useContext(AuthContext);    
+    const navigate = useNavigate();
 
     const validateInputs = () => {
 
@@ -41,6 +41,7 @@ function RegistrationForm() {
                 localStorage.setItem('token', response.data.token);
                 handleRegister(response.data);                
                 setIsRegistered(true);
+                navigate('/profile-setup');
             })
             .catch(err => {
                 if (err.response && err.response.data) {
