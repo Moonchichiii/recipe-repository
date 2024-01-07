@@ -82,7 +82,13 @@ body {
     color: var(--footer-text); 
 }
 
-    
+/* Registration header */
+.reg-header {
+    font-weight:600;    
+    color:var(--reg-header-text-color);
+  }
+  
+
  
 
 /* 6. Components */

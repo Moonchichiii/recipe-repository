@@ -1,19 +1,51 @@
 import React, { useState, useContext } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { AuthContext } from '../../../context/AuthContext';
-import { setupProfile } from '../../../service/Api'; 
-
-
+import { setupProfile } from '../../../service/Api';
 
 function ProfileSetup() {
     const defaultImageUrl = import.meta.env.VITE_DEFAULT_IMG_URL;
     const [bio, setBio] = useState('');
-    const [profileImagePreview, setProfileImagePreview] = useState(defaultImageUrl); 
+    const [profileImagePreview, setProfileImagePreview] = useState(defaultImageUrl);
     const [profileImage, setProfileImage] = useState(null);
-    
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
+
+    const handleImageUpload = async (file) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
+
+        try {
+            const response = await axios.post(
+                'https://api.cloudinary.com/v1_1/dakjlrean/image/upload',
+                formData
+            );
+            return response.data.secure_url;
+        } catch (error) {
+            console.error('Error uploading image', error);
+            return null; 
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        let profileImageUrl = defaultImageUrl; 
+        if (profileImage) {
+            profileImageUrl = await handleImageUpload(profileImage);
+        }
+        
+        if (profileImageUrl) {
+            try {
+                await setupProfile(user.id, bio, profileImageUrl);
+                navigate('/dashboard');
+            } catch (error) {
+                console.error('Error updating profile', error);
+            }
+        }
+    };
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -21,25 +53,10 @@ function ProfileSetup() {
             setProfileImage(file);
             setProfileImagePreview(URL.createObjectURL(file));
         } else {
-            setProfileImagePreview(defaultImageUrl);
+            setProfileImagePreview(defaultImageUrl); 
         }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('bio', bio);
-        if (profileImage) {
-            formData.append('profile_image', profileImage);
-        }
-
-        try {            
-            await setupProfile(user.id, formData); 
-            navigate('/dashboard');
-        } catch (error) {
-            console.error('Error updating profile', error);
-        }
-    };
 
     return (
         <div className="profile-setup-container">

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL;
+const API_IMAGE_URL = import.meta.env.VITE_API_IMAGE_URL;
 
 // Function to register a new user
 export const register = (username, email, password, confirm_password) => {
@@ -14,7 +15,7 @@ export const register = (username, email, password, confirm_password) => {
 
 // second step, public profile 
 export const setupProfile = (userId, bio, profileImage) => {
-    return axios.post(`${API_URL}profiles/${userId}/`, {
+    return axios.post(`${API_IMAGE_URL}profiles/${userId}/`, {
         bio,
         profileImage
     });
