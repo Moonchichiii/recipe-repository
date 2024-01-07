@@ -7,12 +7,13 @@
     "theme_color": "#4A90E2",
     "icons": [
       {
-        "src": "/android-icon-192x192.png",
+        
+        "src": "https://res.cloudinary.com/dakjlrean/image/upload/v1704641324/static/android-icon-192x192_qgx8de.png",
         "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "/apple-icon-180x180.png",
+        "src": "https://res.cloudinary.com/dakjlrean/image/upload/v1704641318/static/apple-icon-180x180_vrb6ib.png",
         "sizes": "180x180",
         "type": "image/png"
       }
