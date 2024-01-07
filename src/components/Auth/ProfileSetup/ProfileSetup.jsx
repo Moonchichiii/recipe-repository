@@ -18,9 +18,10 @@ function ProfileSetup() {
         formData.append('file', file);
         formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
 
+
         try {
             const response = await axios.post(
-                'https://api.cloudinary.com/v1_1/dakjlrean/image/upload',
+                'https://api.cloudinary.com/v1_1/dakjlrean/profile_images/',
                 formData
             );
             return response.data.secure_url;
