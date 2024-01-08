@@ -3,9 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { AuthContext } from '../../../context/AuthContext';
-import { updateProfile } from '../../../service/Api';
 
-
+import { fetchCloudinarySignature, updateProfile } from '../../../service/Api';
 
 
 function ProfileSetup() {
@@ -18,24 +17,29 @@ function ProfileSetup() {
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
 
-    const handleImageUpload = async (file) => {
     
+    const handleImageUpload = async (file) => {
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);        
-
+    
+      
         try {
+            const signatureData = await fetchCloudinarySignature();
+            formData.append('timestamp', signatureData.timestamp);
+            formData.append('signature', signatureData.signature);
+            formData.append('api_key', signatureData.api_key);
+    
+      
             const response = await axios.post(
                 'https://api.cloudinary.com/v1_1/dakjlrean/image/upload',
                 formData
             );
             return response.data.secure_url;
-        }catch (error) {
-            console.error('Error uploading image:', error.response ? error.response.data : error);
+        } catch (error) {
+            console.error('Error fetching Cloudinary signature or uploading image:', error);
             return null;
         }
     };
-
 
 
     const handleSubmit = async (e) => {
