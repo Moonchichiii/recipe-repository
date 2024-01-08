@@ -30,9 +30,9 @@ function ProfileSetup() {
                 formData
             );
             return response.data.secure_url;
-        } catch (error) {
-            console.error('Error uploading image', error);
-            return null; 
+        }catch (error) {
+            console.error('Error uploading image:', error.response ? error.response.data : error);
+            return null;
         }
     };
 
