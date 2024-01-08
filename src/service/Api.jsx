@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL;
-const API_IMAGE_URL = import.meta.env.VITE_API_IMAGE_URL;
+const API_PROFILE_URL = import.meta.env.VITE_API_IMAGE_URL;
+const CLOUDINARY_SIGNATURE_URL = `${API_URL}cloudinary-signature/`;
+
+
 
 // Function to register a new user
 export const register = (username, email, password, confirm_password) => {
@@ -13,14 +16,20 @@ export const register = (username, email, password, confirm_password) => {
     });
 };
 
-// second step, public profile 
-export const setupProfile = (userId, bio, profileImage) => {
-    return axios.post(`${API_URL}profiles/${userId}/`, {
-        bio,
-        profileImage
-    });
+// Generic fetch signature for images
+export const fetchCloudinarySignature = async () => {
+    const response = await axios.get(CLOUDINARY_SIGNATURE_URL);
+    return response.data;
 };
 
+// handling the profile image update 
+export const updateProfile = async (userId, bio, profileImageUrl) => {
+    const response = await axios.patch(`${API_PROFILE_URL}${userId}/update/`, {
+        bio,
+        profile_image: profileImageUrl
+    });
+    return response.data;
+};
 
 // Function to log in a user
 export const login = (username, password) => {
