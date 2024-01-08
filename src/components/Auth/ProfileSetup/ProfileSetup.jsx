@@ -22,7 +22,7 @@ function ProfileSetup() {
     
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
+        formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);        
 
         try {
             const response = await axios.post(
