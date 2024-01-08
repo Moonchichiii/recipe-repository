@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { AuthContext } from '../../../context/AuthContext';
-import { setupProfile } from '../../../service/Api';
+import { updateProfile } from '../../../service/Api';
 
 
 
@@ -40,15 +40,14 @@ function ProfileSetup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         let imageUrl = defaultImageUrl;
         if (profileImage) {
             imageUrl = await handleImageUpload(profileImage);
         }
 
         if (imageUrl) {
-            try {
-                await setupProfile(user.id, bio, imageUrl);
+            try {                
+                await updateProfile(user.id, bio, imageUrl);
                 navigate('/dashboard');
             } catch (error) {
                 console.error('Error updating profile', error);
@@ -69,7 +68,7 @@ function ProfileSetup() {
     };
 
 
-    
+
     return (
         <div className="profile-setup-container">
             {profileImagePreview && (
