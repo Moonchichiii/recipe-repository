@@ -28,6 +28,7 @@ function ProfileSetup() {
             formData.append('timestamp', signatureData.timestamp);
             formData.append('signature', signatureData.signature);
             formData.append('api_key', signatureData.api_key);
+            console.log('Signature Data:', signatureData);
     
       
             const response = await axios.post(

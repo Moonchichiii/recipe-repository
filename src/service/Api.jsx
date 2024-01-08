@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL;
 const API_PROFILE_URL = import.meta.env.VITE_API_IMAGE_URL;
-const CLOUDINARY_SIGNATURE_URL = `${API_URL}cloudinary-signature/`;
+const API_SIGNATURE = import.meta.env.VITE_API_SIGNATURE;
 
 
 
@@ -18,7 +18,7 @@ export const register = (username, email, password, confirm_password) => {
 
 // Generic fetch signature for images
 export const fetchCloudinarySignature = async () => {
-    const response = await axios.get(CLOUDINARY_SIGNATURE_URL);
+    const response = await axios.get(API_SIGNATURE);
     return response.data;
 };
 
