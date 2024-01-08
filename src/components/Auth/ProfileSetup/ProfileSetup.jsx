@@ -36,7 +36,7 @@ function ProfileSetup() {
             );
             return response.data.secure_url;
         } catch (error) {
-            console.error('Error fetching Cloudinary signature or uploading image:', error);
+            console.error('Error uploading image:', error);
             return null;
         }
     };
