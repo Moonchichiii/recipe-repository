@@ -119,6 +119,8 @@ Prebuild using codepen.io
 - https://www.tabnine.com/code/javascript/functions/isAuthenticated 
 - https://dev.to/collins87mbathi/reactjs-protected-route-m3j#:~:text=To%20create%20a%20protected%20route,redirected%20to%20the%20login%20page.
 
+- https://cloudinary.com/documentation/node_integration  
+
 [Back to top](#table-of-contents)
 
 ----------
