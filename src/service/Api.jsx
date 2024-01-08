@@ -18,10 +18,15 @@ export const register = (username, email, password, confirm_password) => {
 
 // Generic fetch signature for images
 export const fetchCloudinarySignature = async () => {
-    const response = await axios.get(API_SIGNATURE);
+    // Retrieve the token from storage or context
+    const token = localStorage.getItem('token') || ''; 
+
+    const headers = {
+        'Authorization': `Token ${token}`
+    };
+    const response = await axios.get(API_SIGNATURE, { headers }); 
     return response.data;
 };
-
 // handling the profile image update 
 export const updateProfile = async (userId, bio, profileImageUrl) => {
     const response = await axios.patch(`${API_PROFILE_URL}${userId}/update/`, {
