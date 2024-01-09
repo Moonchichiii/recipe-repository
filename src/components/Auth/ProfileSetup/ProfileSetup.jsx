@@ -51,13 +51,13 @@ function ProfileSetup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("User ID from context:", user.id); 
     let imageUrl = defaultImageUrl;
     if (profileImage) {
       imageUrl = await handleImageUpload(profileImage);
     }
-
+  
     if (imageUrl) {
+      console.log("Calling updateProfile with User ID:", user.id);
       try {
         await updateProfile(user.id, bio, imageUrl);
         navigate("/dashboard");
