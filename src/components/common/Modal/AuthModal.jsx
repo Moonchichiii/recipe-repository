@@ -23,7 +23,9 @@ function AuthModal({ show, handleClose }) {
         <>
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title className={styles['reg-header']}>{isLoginActive ? 'Login' : 'Sign up'}</Modal.Title>
+                    <Modal.Title className={styles['reg-header']}>
+                    {showProfileSetup ? 'Profile Setup' : (isLoginActive ? 'Login' : 'Sign Up')}
+                        </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Suspense fallback={<div>Loading...</div>}>
