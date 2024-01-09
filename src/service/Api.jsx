@@ -28,6 +28,7 @@ export const fetchCloudinarySignature = async () => {
 
 // handling the profile image update
 export const updateProfile = async (userId, bio, profileImageUrl) => {
+  console.log("Updating profile for user ID:", userId);
   const response = await axios.patch(`${API_PROFILE_URL}${userId}/`, {
     bio,
     profile_image: profileImageUrl,
