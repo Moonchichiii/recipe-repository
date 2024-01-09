@@ -34,7 +34,7 @@ function ProfileSetup() {
       console.log("Signature Data:", signatureData);
 
       const response = await axios.post(
-        'https://api.cloudinary.com/v1_1/dakjlrean//image/upload',
+        "https://api.cloudinary.com/v1_1/dakjlrean//image/upload",
         formData
       );
       return response.data.secure_url;
