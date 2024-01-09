@@ -30,7 +30,7 @@ function ProfileSetup() {
         "upload_preset",
         import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
       );
-
+      
       console.log("Signature Data:", signatureData);
 
       const response = await axios.post(
@@ -40,6 +40,11 @@ function ProfileSetup() {
       return response.data.secure_url;
     } catch (error) {
       console.error("Error uploading image:", error);
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+      console.log(error.request);
+      console.log('Error', error.message);
       return null;
     }
   };
