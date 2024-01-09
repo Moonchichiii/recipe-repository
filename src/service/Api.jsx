@@ -25,12 +25,15 @@ export const fetchCloudinarySignature = async () => {
   const response = await axios.get(API_SIGNATURE, { headers });
   return response.data;
 };
+
 // handling the profile image update
 export const updateProfile = async (userId, bio, profileImageUrl) => {
   const response = await axios.patch(`${API_PROFILE_URL}${userId}/`, {
     bio,
     profile_image: profileImageUrl,
   });
+  console.log("User ID:", userId);
+
   return response.data;
 };
 // Function to log in a user
