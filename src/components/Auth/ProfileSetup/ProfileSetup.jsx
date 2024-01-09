@@ -20,19 +20,20 @@ function ProfileSetup() {
     
     const handleImageUpload = async (file) => {
         const formData = new FormData();
-        formData.append('file', file);
-    
-      
+        formData.append('file', file); 
+
         try {
             const signatureData = await fetchCloudinarySignature();
+        
             formData.append('timestamp', signatureData.timestamp);
             formData.append('signature', signatureData.signature);
             formData.append('api_key', signatureData.api_key);
+            formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET); 
+    
             console.log('Signature Data:', signatureData);
     
-      
             const response = await axios.post(
-                'https://api.cloudinary.com/v1_1/dakjlrean/image/upload',
+                'https://api.cloudinary.com/v1_1/dakjlrean',
                 formData
             );
             return response.data.secure_url;
