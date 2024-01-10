@@ -3,6 +3,8 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import LoginForm from "../../Auth/Forms/LoginForm/LoginForm";
 
+import google from "../../../assets/images/web_dark_rd_SI_1x.webp";
+
 import styles from "./AuthModal.module.css";
 
 const RegistrationForm = lazy(() =>
@@ -11,11 +13,14 @@ const RegistrationForm = lazy(() =>
 const ProfileSetup = lazy(() =>
   import("../../Auth/Forms/ProfileSetup/ProfileSetup")
 );
-import google from "../../../assets/images/web_dark_rd_SI_1x.webp";
+
+
+
 
 function AuthModal({ show, handleClose }) {
   const [isLoginActive, setIsLoginActive] = useState(true);
   const [showProfileSetup, setShowProfileSetup] = useState(false);
+  
 
   const toggleForm = () => setIsLoginActive(!isLoginActive);
 
@@ -76,7 +81,7 @@ function AuthModal({ show, handleClose }) {
                 </div>
               </>
             )}
-            {showProfileSetup && <ProfileSetup onProfileUpdate={() => setShowModal(false)} />}
+             {showProfileSetup && <ProfileSetup onProfileUpdate={handleClose} />}
           </Suspense>
         </Modal.Body>
       </Modal>
