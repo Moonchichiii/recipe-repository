@@ -2,13 +2,12 @@ import { createContext, useState } from 'react';
 
 // context for authentication, 
 export const AuthContext = createContext({
-  isAuthenticated: false,
+  isAuthenticated: false, 
   user: null,
   handleLogin: () => {},
   handleLogout: () => {},
   handleRegister: () => {}
 });
-
 
 export const AuthProvider = ({ children }) => {
     // checking if user is authenticated
@@ -39,7 +38,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, user, handleLogin, handleLogout, handleRegister }}>
-      {children}
+  
     </AuthContext.Provider>
   );
 };
