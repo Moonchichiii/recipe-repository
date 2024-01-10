@@ -8,101 +8,128 @@
    7. Responsive (@Media Queries)
 */
 
-/* 1. Root Variables and Typography */
-:root {
-    --main-bg-color: #2D3250;
-    --main-text-bg-color:#5a5a5a;
-    --footer-text-color:#4a4a4a;
-    --reg-header-text-color:#d67d0e;
-    --search-bar-bg-color-mobile:#DDDDDD;
-    --nav-link: #F6C500;  
-    --nav-link-hover:#FBAC82;
-    --navbrand-color:#d67d0e;    
-    --navbar-toggle-icon-color:#ffcc99;
-    --button-bg-color: #F9EBCD;
-    --button-bg-color-hover: #F78C56;
-    --footer-bg-color: #643A99;
-  
-   
-    /* Typography */
-    --font-xl: clamp(3rem, 1rem + 10vw, 6rem);
-    --font-large: 2rem;
-    --font-medium: 1.5rem;
-    --font-regular: 1.125rem;
-}
- /* 1.1 Typography */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Kalnia', serif;
-    color: var(--nav-link); 
-}
-    
-    p {
-    font-family: 'Afacad', sans-serif;  
-    }
-    
-    strong {
-      color:var(--navbrand-color);
-        font-size:var(--font-medium);
-        font-weight:600;
-      font-family: 'Kalnia', serif;
-    }
+  /* 1. Root Variables and Typography */
+  :root {
+      --main-bg-color: #2D3250;
+      --main-text-bg-color: #5a5a5a;
+      --footer-text-color: #4a4a4a;
+      --reg-header-text-color: #d67d0e;
+      --search-bar-bg-color-mobile: #DDDDDD;
+      --nav-link: #F6C500;
+      --nav-link-hover: #FBAC82;
+      --navbrand-color: #d67d0e;
+      --navbar-toggle-icon-color: #ffcc99;
+      --button-bg-color: #F9EBCD;
+      --button-bg-color-hover: #F78C56;
+      --footer-bg-color: #643A99;
 
-/* 2. Reset */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;  
-}
 
-th {
-    text-align: inherit;
-}
-
-/* 3. Base Styles */
-html, body {
-    height: 100vh; 
-    -webkit-tap-highlight-color: transparent;    
-    font-family: 'Afacad', sans-serif;
-    font-size: var(--font-regular);
-    line-height: 1.6;
-    background-color: var(--main-bg-color); 
-    color:var(--main-text-bg-color);  
-    }
-
-body {
-    display: flex; 
-    flex-direction: column; 
-}
-
-/* 4. Main Layout */
-    
-    
-.footer {
-    background-color: var(--footer-bg-color); 
-    color: var(--footer-text); 
-}
-
-/* Registration header */
-.reg-header {
-    font-weight:600;    
-    color:var(--reg-header-text-color);
+      /* Typography */
+      --font-xl: clamp(3rem, 1rem + 10vw, 6rem);
+      --font-large: 2rem;
+      --font-medium: 1.5rem;
+      --font-regular: 1.125rem;
   }
+
+  @font-face {
+      font-family: 'Afacad';
+      src: url('./assets/fonts/Afacad/Afacad-VariableFont_wght.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+  }
+
+  @font-face {
+      font-family: 'Afacad';
+      src: url('./assets/fonts/Afacad/Afacad-Italic-VariableFont_wght.ttf') format('truetype');
+      font-weight: normal;
+      font-style: italic;
+  }
+
+  @font-face {
+      font-family: 'Kalnia';
+      src: url('./assets/fonts/Kalnia/Kalnia-VariableFont_wght.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+  }
+
+  body,
+  p,
+  .reg-header,
+  .btn-primary {
+      font-family: 'Afacad', sans-serif;
+
+  }
+
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+      font-family: 'Kalnia', serif;
+      color: var(--nav-link);
+  }
+
+
+  strong {
+      color: var(--navbrand-color);
+      font-size: var(--font-medium);
+      font-weight: 600;
+      font-family: 'Kalnia', serif;
+  }
+
+  /* 2. Reset */
+  *,
+  *::before,
+  *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+  }
+
+  th {
+      text-align: inherit;
+  }
+
+  /* 3. Base Styles */
+  html,
+  body {
+      height: 100vh;
+      -webkit-tap-highlight-color: transparent;
+      font-size: var(--font-regular);
+      line-height: 1.6;
+      background-color: var(--main-bg-color);
+      color: var(--main-text-bg-color);
+  }
+
+  body {
+      display: flex;
+      flex-direction: column;
+  }
+
+  /* 4. Main Layout */
+
+
+  .footer {
+      background-color: var(--footer-bg-color);
+      color: var(--footer-text);
+  }
+  /* 6. Components */
   
-
- 
-
-/* 6. Components */
-    
-/* Buttons */
-.btn-primary {
-    background-color: var(--button-bg-color); 
-    color: var(--main-bg-color);
-    border: none;
+  /* Registration - Login header */
+  .reg-header {
+    font-weight: 600;
+    color: var(--reg-header-text-color);
 }
+  /* Buttons */
+  .btn-primary {
+      background-color: var(--button-bg-color);
+      color: var(--main-bg-color);
+      border: none;
+  }
 
-.btn-primary:hover {
-    background-color: var(--button-bg-color-hover); 
-    color: white; 
-}
-
-
+  .btn-primary:hover {
+      background-color: var(--button-bg-color-hover);
+      color: white;
+  }

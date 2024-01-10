@@ -39,8 +39,7 @@ export const updateProfile = async (userId, bio, profileImageUrl) => {
     profile_image: profileImageUrl,
   }, { headers });
 
-  console.log("User ID:", userId);
-
+  
   return response.data;
 };
 // Function to log in a user
