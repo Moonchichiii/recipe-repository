@@ -47,7 +47,8 @@ function ProfileSetup() {
     }
     if (imageUrl) {
       try {
-        await updateProfile(user.id, bio, imageUrl);        
+        await updateProfile(user.id, bio, imageUrl);
+        
         navigate("/dashboard");
       } catch (error) {
         // Display error message to the user
