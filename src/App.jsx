@@ -3,10 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { AuthContext } from "./context/AuthContext";
 import ProtectedRoute from "./components/Auth/Protectedroute/ProtectedRoute";
+import Footer from "./components/common/Footer/Footer"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-const LandingPage = () => <div><h1>Recipe Repository</h1></div>;
+const LandingPage = () => 
+<div><h1>Recipe Repository</h1>
+<footer />
+</div>;
 const AuthModal = lazy(() => import("./components/common/Modal/AuthModal"));
 const Dashboard = lazy(() => import("./components/pages/DashBoard/DashBoard"));
 const ProfileSetup = lazy(() => import("./components/Auth/Forms/ProfileSetup/ProfileSetup"));
@@ -41,6 +45,7 @@ function App() {
         </Route>
       </Routes>
     </Router>
+     
   );
 }
 
