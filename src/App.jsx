@@ -1,7 +1,7 @@
-import { useState, Suspense, lazy } from "react";
+import { useState, Suspense, lazy, useContext } from "react"; // import useContext here
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider, AuthContext } from "./context/AuthContext"; // make sure AuthContext is exported from the context file
 import ProtectedRoute from "./components/Auth/Protectedroute/ProtectedRoute";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,25 +14,34 @@ const LandingPage = () => {
     </div>
   );
 };
+
+const AuthModal = lazy(() => import("./components/common/Modal/AuthModal"));
+const Dashboard = lazy(() => import("./components/pages/DashBoard/DashBoard"));
+const ProfileSetup = lazy(() =>
+  import("./components/Auth/Forms/ProfileSetup/ProfileSetup")
+);
+
 function App() {
   const [showModal, setShowModal] = useState(false);
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-  const AuthModal = lazy(() => import("./components/common/Modal/AuthModal"));
-  const Dashboard = lazy(() =>
-    import("./components/pages/DashBoard/DashBoard")
-  );
-  const ProfileSetup = lazy(() =>
-    import("./components/Auth/Forms/ProfileSetup/ProfileSetup")
-  );
+  const { isAuthenticated, handleLogout } = useContext(AuthContext);
 
   return (
     <AuthProvider>
       <Router>
-        <Button variant="primary" onClick={handleShowModal}>
-          Accounts
-        </Button>
+        {!isAuthenticated && (
+          <Button variant="primary" onClick={handleShowModal}>
+            Accounts
+          </Button>
+        )}
+
+        {isAuthenticated && (
+          <Button variant="secondary" onClick={handleLogout}>
+            Logout
+          </Button>
+        )}
 
         <Suspense fallback={<div>Loading...</div>}>
           {showModal && (
@@ -42,7 +51,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          
+
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile-setup" element={<ProfileSetup />} />
