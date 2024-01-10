@@ -34,12 +34,15 @@ export const updateProfile = async (userId, bio, profileImageUrl) => {
     Authorization: `Token ${token}`,
   };
 
-  const response = await axios.patch(`${API_PROFILE_URL}${userId}/`, {
-    bio,
-    profile_image: profileImageUrl,
-  }, { headers });
+  const response = await axios.patch(
+    `${API_PROFILE_URL}${userId}/`,
+    {
+      bio,
+      profile_image: profileImageUrl,
+    },
+    { headers }
+  );
 
-  
   return response.data;
 };
 // Function to log in a user
