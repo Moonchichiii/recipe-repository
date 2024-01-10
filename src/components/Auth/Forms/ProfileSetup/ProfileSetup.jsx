@@ -6,7 +6,7 @@ import { AuthContext } from "../../../../context/AuthContext";
 import { fetchCloudinarySignature, updateProfile } from "../../../../service/Api";
 
 
-function ProfileSetup() {
+function ProfileSetup({onProfileUpdate}) {
   const defaultImageUrl = import.meta.env.VITE_DEFAULT_IMG_URL;
   const [bio, setBio] = useState("");
   const [profileImagePreview, setProfileImagePreview] = useState(defaultImageUrl);
@@ -45,13 +45,13 @@ function ProfileSetup() {
     if (profileImage) {
       imageUrl = await handleImageUpload(profileImage);
     }
+  
     if (imageUrl) {
       try {
         await updateProfile(user.id, bio, imageUrl);
-        
-        navigate("/dashboard");
+        navigate("/dashboard"); 
+        onProfileUpdate();
       } catch (error) {
-        // Display error message to the user
         console.error("Error updating profile:", error.message);
         alert("Error updating profile. Please try again.");
       }
