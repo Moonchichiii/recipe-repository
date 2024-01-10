@@ -44,6 +44,7 @@ function AuthModal({ show, handleClose }) {
         </Modal.Header>
         <Modal.Body>
           <Suspense fallback={<div>Loading...</div>}>
+            
             {isLoginActive && !showProfileSetup && (
               <>
                 <LoginForm onCloseModal={handleClose} />
@@ -60,6 +61,7 @@ function AuthModal({ show, handleClose }) {
             )}
             {!isLoginActive && !showProfileSetup && (
               <>
+              
                 <RegistrationForm
                   onSuccessfulRegistration={handleSuccessfulRegistration}
                 />
@@ -74,7 +76,7 @@ function AuthModal({ show, handleClose }) {
                 </div>
               </>
             )}
-            {showProfileSetup && <ProfileSetup />}
+            {showProfileSetup && <ProfileSetup onProfileUpdate={() => setShowModal(false)} />}
           </Suspense>
         </Modal.Body>
       </Modal>
@@ -83,3 +85,4 @@ function AuthModal({ show, handleClose }) {
 }
 
 export default AuthModal;
+

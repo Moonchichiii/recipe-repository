@@ -21,23 +21,19 @@ function App() {
 
   return (    
     <Router>
-      {!isAuthenticated && (
-        <Button variant="primary" onClick={() => setShowModal(true)}>
-          Accounts
-        </Button>
-      )}
+    {isAuthenticated ? (
+  <Button variant="secondary" onClick={handleLogout}>Logout</Button>
+) : (
+  <Button variant="primary" onClick={() => setShowModal(true)}>Accounts</Button>
+)}
 
-      {isAuthenticated && (
-        <Button variant="secondary" onClick={handleLogout}>
-          Logout
-        </Button>
-      )}
-    <Footer />
-    
+
       <Suspense fallback={<div>Loading...</div>}>
         {showModal && <AuthModal show={showModal} handleClose={() => setShowModal(false)} />}        
       </Suspense>
       
+      <Footer /> 
+
       <Routes>
         <Route path="/" element={<LandingPage />} />
         

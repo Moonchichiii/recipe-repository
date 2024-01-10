@@ -6,7 +6,7 @@ import { AuthContext } from "../../../../context/AuthContext";
 import { fetchCloudinarySignature, updateProfile } from "../../../../service/Api";
 
 
-function ProfileSetup() {
+function ProfileSetup({ onProfileUpdate }) {
   const defaultImageUrl = import.meta.env.VITE_DEFAULT_IMG_URL;
 
   const [bio, setBio] = useState("");
@@ -27,14 +27,14 @@ function ProfileSetup() {
       formData.append("signature", signatureData.signature);
       formData.append("api_key", signatureData.api_key);
       formData.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
-      console.log(formData);
+      
 
 
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dakjlrean/image/upload",
         formData
       );
-      console.log(response.data.secure_url);
+      
       return response.data.secure_url;
       
     } catch (error) {
@@ -56,6 +56,7 @@ function ProfileSetup() {
     if (imageUrl) {
       try {
         await updateProfile(user.id, bio, imageUrl);
+        onProfileUpdate();
         navigate("/dashboard");
       } catch (error) {
         // Display error message to the user

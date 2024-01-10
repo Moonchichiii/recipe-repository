@@ -23,8 +23,7 @@ function Dashboard() {
 
     return (
         <div>
-            <h1>Dashboard</h1>
-            <Button onClick={handleLogout}>Logout</Button>
+            <h1>Dashboard</h1>            
         </div>
     );
 }
