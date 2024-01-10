@@ -1,12 +1,11 @@
-import { useState, Suspense, lazy, useContext } from "react"; // import useContext here
+import { useState, Suspense, lazy, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import { AuthProvider, AuthContext } from "./context/AuthContext"; // make sure AuthContext is exported from the context file
+import { AuthContext } from "./context/AuthContext"; // Only import AuthContext here
 import ProtectedRoute from "./components/Auth/Protectedroute/ProtectedRoute";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-
 const LandingPage = () => {
   return (
     <div>
@@ -28,8 +27,7 @@ function App() {
 
   const { isAuthenticated, handleLogout } = useContext(AuthContext);
 
-  return (
-    <AuthProvider>
+  return (    
       <Router>
         {!isAuthenticated && (
           <Button variant="primary" onClick={handleShowModal}>
@@ -58,7 +56,6 @@ function App() {
           </Route>
         </Routes>
       </Router>
-    </AuthProvider>
   );
 }
 
