@@ -1,8 +1,7 @@
-// Dashboard component
 import { useContext } from 'react';
 import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
-import { Route, Navigate } from 'react-router-dom';
 import { logout } from '../../../service/Api';
 
 function Dashboard() {
