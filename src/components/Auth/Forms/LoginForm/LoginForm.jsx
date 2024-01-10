@@ -1,38 +1,41 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Alert } from "react-bootstrap";
-
 import { AuthContext } from "../../../../context/AuthContext";
-
 import { login, setAuthToken } from "../../../../service/Api";
 
 function LoginForm() {
-  const { isAuthenticated } = useContext(AuthContext);
-  const isLoggedIn = isAuthenticated;
+  const { isAuthenticated, handleLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated, navigate]);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { handleLogin } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     login(username, password)
       .then((response) => {
-        const { token } = response.data;        
+        const { token } = response.data;
         localStorage.setItem("token", token);
         setAuthToken(token);
-        handleLogin(response.data);         
-        navigate("/dashboard");
+        handleLogin(response.data);
       })
-      .catch((error) => {        
+      .catch((error) => {
         if (error.response && error.response.data) {
-          setError(error.response.data);
+          setError(error.response.data.message || "Login failed!");
         } else {
-          setError({ general: "Login failed!" });
+          setError("An unexpected error occurred!");
         }
       });
   };
+
   return (
     <div className="form-container">
       <Form onSubmit={handleSubmit}>
@@ -73,8 +76,7 @@ function LoginForm() {
         <Button variant="primary" type="submit">
           Login
         </Button>
-      </Form>
-      {isLoggedIn && <p>User logged in successfully!</p>}
+      </Form>      
     </div>
   );
 }
