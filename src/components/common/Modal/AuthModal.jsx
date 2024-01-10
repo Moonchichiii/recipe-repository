@@ -1,11 +1,11 @@
 import React, { useState, Suspense, lazy } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import LoginForm from '../../Auth/LoginForm/LoginForm';
+import LoginForm from '../../Auth/Forms/LoginForm/LoginForm';
 import styles from './AuthModal.module.css';
 
 const RegistrationForm = lazy(() => import('../../Auth/RegistrationForm/RegistrationForm'));
-const ProfileSetup = lazy(() => import('../../Auth/ProfileSetup/ProfileSetup'));
+const ProfileSetup = lazy(() => import('../../Auth/Forms/ProfileSetup/ProfileSetup'));
 import google from '../../../assets/images/web_dark_rd_SI_1x.webp';
 
 function AuthModal({ show, handleClose }) {

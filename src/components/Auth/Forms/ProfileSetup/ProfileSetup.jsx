@@ -2,20 +2,19 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import { AuthContext } from "../../../context/AuthContext";
-
-import { fetchCloudinarySignature, updateProfile } from "../../../service/Api";
+import { AuthContext } from "../../../../context/AuthContext";
+import { fetchCloudinarySignature, updateProfile } from "../../../../service/Api";
 
 function ProfileSetup() {
   const defaultImageUrl = import.meta.env.VITE_DEFAULT_IMG_URL;
 
   const [bio, setBio] = useState("");
-  const [profileImagePreview, setProfileImagePreview] =
-    useState(defaultImageUrl);
+  const [profileImagePreview, setProfileImagePreview] = useState(defaultImageUrl);
   const [profileImage, setProfileImage] = useState(null);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
+  // Handle image upload to Cloudinary
   const handleImageUpload = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
@@ -26,12 +25,7 @@ function ProfileSetup() {
       formData.append("timestamp", signatureData.timestamp);
       formData.append("signature", signatureData.signature);
       formData.append("api_key", signatureData.api_key);
-      formData.append(
-        "upload_preset",
-        import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
-      );
-      
-      console.log("Signature Data:", signatureData);
+      formData.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
 
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dakjlrean/image/upload",
@@ -39,34 +33,34 @@ function ProfileSetup() {
       );
       return response.data.secure_url;
     } catch (error) {
-      console.error("Error uploading image:", error);
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
-      console.log(error.request);
-      console.log('Error', error.message);
+      // Display error message to the user
+      console.error("Error uploading image:", error.message);
+      alert("Error uploading image. Please try again.");
       return null;
     }
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     let imageUrl = defaultImageUrl;
     if (profileImage) {
       imageUrl = await handleImageUpload(profileImage);
     }
-  
+
     if (imageUrl) {
-      console.log("Calling updateProfile with User ID:", user.id);
       try {
         await updateProfile(user.id, bio, imageUrl);
         navigate("/dashboard");
       } catch (error) {
-        console.error("Error updating profile", error);
+        // Display error message to the user
+        console.error("Error updating profile:", error.message);
+        alert("Error updating profile. Please try again.");
       }
     }
   };
 
+  // Handle image change
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {

@@ -21,10 +21,10 @@ function App() {
 
   const AuthModal = lazy(() => import("./components/common/Modal/AuthModal"));
   const Dashboard = lazy(() =>
-    import("./components/features/DashBoard/DashBoard")
+    import("./components/pages/DashBoard/DashBoard")
   );
   const ProfileSetup = lazy(() =>
-    import("./components/Auth/ProfileSetup/ProfileSetup")
+    import("./components/Auth/Forms/ProfileSetup/ProfileSetup")
   );
 
   return (

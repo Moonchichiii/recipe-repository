@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from '../Navbar/NavBar';
 import AuthNavbar from '../../components/Authentication/AuthNavbar/AuthNavbar';
 
-import Footer from '../../Footer/Footer';
+import Footer from '../../common/Footer/Footer';
 
 const Layout = ({ children }) => (
   <>
