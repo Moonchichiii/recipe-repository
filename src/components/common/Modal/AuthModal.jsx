@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import LoginForm from '../../Auth/Forms/LoginForm/LoginForm';
 import styles from './AuthModal.module.css';
 
-const RegistrationForm = lazy(() => import('../../Auth/RegistrationForm/RegistrationForm'));
+const RegistrationForm = lazy(() => import('../../Auth/Forms/RegistrationForm/RegistrationForm'));
 const ProfileSetup = lazy(() => import('../../Auth/Forms/ProfileSetup/ProfileSetup'));
 import google from '../../../assets/images/web_dark_rd_SI_1x.webp';
 
