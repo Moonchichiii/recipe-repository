@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { AuthContext } from "../../../../context/AuthContext";
 import { fetchCloudinarySignature, updateProfile } from "../../../../service/Api";
+import { response } from "express";
 
 function ProfileSetup() {
   const defaultImageUrl = import.meta.env.VITE_DEFAULT_IMG_URL;
@@ -26,12 +27,16 @@ function ProfileSetup() {
       formData.append("signature", signatureData.signature);
       formData.append("api_key", signatureData.api_key);
       formData.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
+      console.log(formData);
+
 
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dakjlrean/image/upload",
         formData
       );
+      console.log(response.data.secure_url);
       return response.data.secure_url;
+      
     } catch (error) {
       // Display error message to the user
       console.error("Error uploading image:", error.message);
