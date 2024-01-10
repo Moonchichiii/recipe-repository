@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { AuthContext } from "../../../../context/AuthContext";
 import { fetchCloudinarySignature, updateProfile } from "../../../../service/Api";
-import { response } from "express";
+
 
 function ProfileSetup() {
   const defaultImageUrl = import.meta.env.VITE_DEFAULT_IMG_URL;
