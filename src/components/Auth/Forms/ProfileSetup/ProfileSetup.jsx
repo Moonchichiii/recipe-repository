@@ -8,28 +8,22 @@ import { fetchCloudinarySignature, updateProfile } from "../../../../service/Api
 
 function ProfileSetup({ onProfileUpdate }) {
   const defaultImageUrl = import.meta.env.VITE_DEFAULT_IMG_URL;
-
   const [bio, setBio] = useState("");
   const [profileImagePreview, setProfileImagePreview] = useState(defaultImageUrl);
   const [profileImage, setProfileImage] = useState(null);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-
   // Handle image upload to Cloudinary
   const handleImageUpload = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
-
     try {
       const signatureData = await fetchCloudinarySignature();
-
       formData.append("timestamp", signatureData.timestamp);
       formData.append("signature", signatureData.signature);
       formData.append("api_key", signatureData.api_key);
       formData.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
       
-
-
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dakjlrean/image/upload",
         formData
@@ -44,7 +38,6 @@ function ProfileSetup({ onProfileUpdate }) {
       return null;
     }
   };
-
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +45,6 @@ function ProfileSetup({ onProfileUpdate }) {
     if (profileImage) {
       imageUrl = await handleImageUpload(profileImage);
     }
-
     if (imageUrl) {
       try {
         await updateProfile(user.id, bio, imageUrl);
@@ -65,7 +57,6 @@ function ProfileSetup({ onProfileUpdate }) {
       }
     }
   };
-
   // Handle image change
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -76,7 +67,6 @@ function ProfileSetup({ onProfileUpdate }) {
       setProfileImagePreview(defaultImageUrl);
     }
   };
-
   return (
     <div className="profile-setup-container">
       {profileImagePreview && (
@@ -106,5 +96,4 @@ function ProfileSetup({ onProfileUpdate }) {
     </div>
   );
 }
-
 export default ProfileSetup;
