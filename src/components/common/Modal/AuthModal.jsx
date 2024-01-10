@@ -13,7 +13,7 @@ function AuthModal({ show, handleClose }) {
     const [isLoginActive, setIsLoginActive] = useState(true);
     const [showProfileSetup, setShowProfileSetup] = useState(false);
     
-    
+     
 
     const toggleForm = () => setIsLoginActive(!isLoginActive);
 

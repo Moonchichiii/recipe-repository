@@ -26,6 +26,7 @@ function LoginForm() {
         localStorage.setItem("token", token);
         setAuthToken(token);
         handleLogin(response.data);
+        onCloseModal(); 
       })
       .catch((error) => {
         if (error.response && error.response.data) {

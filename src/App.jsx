@@ -33,8 +33,12 @@ function App() {
         </Button>
       )}
 
-      <Suspense fallback={<div>Loading...</div>}>
-        {showModal && <AuthModal show={showModal} handleClose={() => setShowModal(false)} />}
+      <Suspense fallback={<div>Loading...</div>}>        
+      {showModal && (
+  <AuthModal show={showModal} handleClose={() => setShowModal(false)}>
+    <LoginForm onCloseModal={() => setShowModal(false)} />
+  </AuthModal>
+      )}   
       </Suspense>
 
       <Routes>
