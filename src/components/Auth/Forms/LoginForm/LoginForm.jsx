@@ -19,21 +19,20 @@ function LoginForm() {
     e.preventDefault();
     login(username, password)
       .then((response) => {
-        const { token } = response.data;
+        const { token } = response.data;        
         localStorage.setItem("token", token);
         setAuthToken(token);
-        handleLogin(response.data);
+        handleLogin(response.data);         
         navigate("/dashboard");
       })
-      .catch((error) => {
+      .catch((error) => {        
         if (error.response && error.response.data) {
           setError(error.response.data);
         } else {
-          setError({ general: "An error occurred!" });
+          setError({ general: "Login failed!" });
         }
       });
   };
-
   return (
     <div className="form-container">
       <Form onSubmit={handleSubmit}>

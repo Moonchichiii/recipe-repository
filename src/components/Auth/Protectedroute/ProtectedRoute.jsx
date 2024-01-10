@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'; 
-import { Navigate } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
@@ -12,7 +12,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
                 isAuthenticated ? (
                     <Component {...props} />
                 ) : (
-                    <Navigate to="/login" />
+                    <Redirect to="/login" />
                 )
             }
         />
