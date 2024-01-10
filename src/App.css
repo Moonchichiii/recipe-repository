@@ -30,27 +30,19 @@
       --font-medium: 1.5rem;
       --font-regular: 1.125rem;
   }
-
   @font-face {
-      font-family: 'Afacad';
-      src: url('./assets/fonts/Afacad/Afacad-VariableFont_wght.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-  }
+    font-family: 'Afacad';
+    src: url('./src/assets/fonts/Afacad/static/Afacad-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
-  @font-face {
-      font-family: 'Afacad';
-      src: url('./assets/fonts/Afacad/Afacad-Italic-VariableFont_wght.ttf') format('truetype');
-      font-weight: normal;
-      font-style: italic;
-  }
-
-  @font-face {
-      font-family: 'Kalnia';
-      src: url('./assets/fonts/Kalnia/Kalnia-VariableFont_wght.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-  }
+@font-face {
+    font-family: 'Kalnia';
+    src: url('./src/assets/fonts/Kalnia/static/Kalnia-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
   body,
   p,
