@@ -4,7 +4,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { AuthContext } from "../../../../context/AuthContext";
 import { login, setAuthToken } from "../../../../service/Api";
 
-function LoginForm() {
+function LoginForm({ onCloseModal }) {
   const { isAuthenticated, handleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 

@@ -9,7 +9,7 @@ import "./App.css";
 
 const LandingPage = () => 
 <div><h1>Recipe Repository</h1>
-<footer />
+
 </div>;
 const AuthModal = lazy(() => import("./components/common/Modal/AuthModal"));
 const Dashboard = lazy(() => import("./components/pages/DashBoard/DashBoard"));
@@ -32,17 +32,15 @@ function App() {
           Logout
         </Button>
       )}
-
-      <Suspense fallback={<div>Loading...</div>}>        
-      {showModal && (
-  <AuthModal show={showModal} handleClose={() => setShowModal(false)}>
-    <LoginForm onCloseModal={() => setShowModal(false)} />
-  </AuthModal>
-      )}   
+    <Footer />
+    
+      <Suspense fallback={<div>Loading...</div>}>
+        {showModal && <AuthModal show={showModal} handleClose={() => setShowModal(false)} />}        
       </Suspense>
-
+      
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile-setup" element={<ProfileSetup />} />
