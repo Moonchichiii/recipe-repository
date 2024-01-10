@@ -1,4 +1,4 @@
-import { useState, Suspense, lazy, useContext } from "react";
+import React, { useState, Suspense, lazy, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { AuthContext } from "./context/AuthContext";

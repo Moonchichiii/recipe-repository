@@ -1,4 +1,4 @@
-import { useState, Suspense, lazy } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import LoginForm from '../../Auth/Forms/LoginForm/LoginForm';
@@ -8,9 +8,12 @@ const RegistrationForm = lazy(() => import('../../Auth/Forms/RegistrationForm/Re
 const ProfileSetup = lazy(() => import('../../Auth/Forms/ProfileSetup/ProfileSetup'));
 import google from '../../../assets/images/web_dark_rd_SI_1x.webp';
 
+  
 function AuthModal({ show, handleClose }) {
     const [isLoginActive, setIsLoginActive] = useState(true);
     const [showProfileSetup, setShowProfileSetup] = useState(false);
+    
+    
 
     const toggleForm = () => setIsLoginActive(!isLoginActive);
 
