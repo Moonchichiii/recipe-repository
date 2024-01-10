@@ -1,7 +1,13 @@
 import { createContext, useState } from 'react';
 
 // context for authentication, 
-export const AuthContext = createContext(null);
+export const AuthContext = createContext({
+  isAuthenticated: false,
+  user: null,
+  handleLogin: () => {},
+  handleLogout: () => {},
+  handleRegister: () => {}
+});
 
 
 export const AuthProvider = ({ children }) => {
