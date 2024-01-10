@@ -42,23 +42,11 @@ function App() {
 
         <Routes>
           <Route path="/" element={<LandingPage />} />
-
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile-setup"
-            element={
-              <ProtectedRoute>
-                <ProfileSetup />
-              </ProtectedRoute>
-            }
-          />
+          
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile-setup" element={<ProfileSetup />} />
+          </Route>
         </Routes>
       </Router>
     </AuthProvider>
