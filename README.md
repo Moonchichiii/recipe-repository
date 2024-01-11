@@ -111,6 +111,7 @@ Prebuild using codepen.io
 ----------
 
 ## Credits & Tutorials
+- Google Sign in https://developers.google.com/identity/sign-in/web/sign-in
 - https://react-bootstrap.netlify.app/docs/components/modal/ ***got most of my components from here*** 
 - https://medium.com/@cole_ruche/uploading-images-to-rest-api-backend-in-react-js-b931376b5833
 - https://dayvster.com/blog/use-context-for-auth  *** I Got the ideas for the AuthContext here! ***

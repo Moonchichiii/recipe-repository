@@ -3,8 +3,6 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import LoginForm from "../../Auth/Forms/LoginForm/LoginForm";
 
-import google from "../../../assets/images/web_dark_rd_SI_1x.webp";
-
 import styles from "./AuthModal.module.css";
 
 const RegistrationForm = lazy(() =>
@@ -13,9 +11,6 @@ const RegistrationForm = lazy(() =>
 const ProfileSetup = lazy(() =>
   import("../../Auth/Forms/ProfileSetup/ProfileSetup")
 );
-
-
-
 
 function AuthModal({ show, handleClose }) {
   const [isLoginActive, setIsLoginActive] = useState(true);
@@ -28,6 +23,19 @@ function AuthModal({ show, handleClose }) {
     setShowProfileSetup(true);
     setIsLoginActive(false);
   };
+
+  gapi.load('auth', function() {
+    gapi.auth2.init();
+   });
+
+
+   function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  }
 
   return (
     <>
@@ -60,8 +68,9 @@ function AuthModal({ show, handleClose }) {
                   </Button>
                 </div>
                 <div className="mt-3 text-center">
-                  <img src={google} alt="Social login with google" />
-                  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+                  </div>
                 </div>
               </>
             )}
@@ -78,7 +87,8 @@ function AuthModal({ show, handleClose }) {
                   </Button>
                 </div>
                 <div className="mt-3 text-center">
-                  <img src={google} alt="Social login with google" />
+                <div className="g-signin2" data-onsuccess="onSignIn">
+                  </div>
                 </div>
               </>
             )}

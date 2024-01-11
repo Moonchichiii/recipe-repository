@@ -90,6 +90,9 @@ body {
     background-color: var(--footer-bg-color);
     color: var(--footer-text);
 }
+.footer-sub-text {
+    color:#FFFFFF;
+}
 /* 6. Components */
 
  /* Registration header */
