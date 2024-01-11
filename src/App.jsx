@@ -29,15 +29,6 @@ function App() {
 ) : (
   <Button variant="primary" onClick={() => setShowModal(true)}>Accounts</Button>
 )}
-<a href="#" onclick="signOut();">Sign out</a>
-<script>
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-  }
-</script>
 
       <Suspense fallback={<div>Loading...</div>}>
         {showModal && <AuthModal show={showModal} handleClose={() => setShowModal(false)} />}        

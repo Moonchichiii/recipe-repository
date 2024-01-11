@@ -3,8 +3,9 @@ import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import { logout } from '../../../service/Api';
+import PostCreateForm from '../Posts/PostsForm';
 
-function Dashboard({signOut}) {
+function Dashboard() {
     const { setUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -21,16 +22,12 @@ function Dashboard({signOut}) {
         });
     };
 
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          console.log('User signed out.');   
-        });
-      }
+   
 
     return (
         <div>
-            <h1>Dashboard</h1>            
+            <h1>Dashboard</h1>
+            <Button variant='primary' onClick={PostCreateForm}>Post</Button>            
         </div>
     );
 }
