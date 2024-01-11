@@ -49,8 +49,9 @@ function ProfileSetup({onProfileUpdate}) {
     if (imageUrl) {
       try {
         await updateProfile(user.id, bio, imageUrl);
-        navigate("/dashboard"); 
         onProfileUpdate();
+        navigate("/dashboard"); 
+        
       } catch (error) {
         console.error("Error updating profile:", error.message);
         alert("Error updating profile. Please try again.");
