@@ -61,6 +61,7 @@ function AuthModal({ show, handleClose }) {
                 </div>
                 <div className="mt-3 text-center">
                   <img src={google} alt="Social login with google" />
+                  <div class="g-signin2" data-onsuccess="onSignIn"></div>
                 </div>
               </>
             )}

@@ -5,7 +5,7 @@ import { AuthContext } from "./context/AuthContext";
 import ProtectedRoute from "./components/Auth/Protectedroute/ProtectedRoute";
 import Footer from "./components/common/Footer/Footer"
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import "./App.module.css";
 
 const LandingPage = () => 
 <div><h1>Recipe Repository</h1>
