@@ -1,18 +1,11 @@
-import React, { useState, Suspense, lazy, useContext } from "react";
+import React, { useState, lazy, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import { AuthContext } from "./context/AuthContext";
 import ProtectedRoute from "./components/Auth/Protectedroute/ProtectedRoute";
-import Layout from "./components/common/Layout/Layout"
+import Layout from "./components/common/MainLayOut/LayOut";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.module.css";
 
-const LandingPage = () => (
-  <div>
-    <h1>Recipe Repository</h1>
-  </div>
-);
-const AuthModal = lazy(() => import("./components/common/Modal/AuthModal"));
 const Dashboard = lazy(() => import("./components/pages/DashBoard/DashBoard"));
 const ProfileSetup = lazy(() =>
   import("./components/Auth/Forms/ProfileSetup/ProfileSetup")
@@ -24,25 +17,14 @@ function App() {
 
   return (
     <Router>
-      {isAuthenticated ? (
-        <Button variant="secondary" onClick={handleLogout}>
-          Logout
-        </Button>
-      ) : (
-        <Button variant="primary" onClick={() => setShowModal(true)}>
-          Accounts
-        </Button>
-      )}
-
-      <Suspense fallback={<div>Loading...</div>}>
-        {showModal && (
-          <AuthModal show={showModal} handleClose={() => setShowModal(false)} />
-        )}
-      </Suspense>
-
-      <Layout>
+      <Layout
+        showModal={showModal}
+        setShowModal={setShowModal}
+        isAuthenticated={isAuthenticated}
+        handleLogout={handleLogout}
+      >
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage />} />          
 
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
@@ -54,4 +36,13 @@ function App() {
   );
 }
 
+
+const LandingPage = () => (
+  <div>
+    <h1>Recipe Repository</h1>
+  </div>
+);
+
+
 export default App;
+

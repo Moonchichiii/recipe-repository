@@ -1,44 +1,59 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { logout, setAuthToken } from "../service/Api";
 
-// context for authentication, 
+// context for authentication,
 export const AuthContext = createContext({
-  isAuthenticated: false, 
+  isAuthenticated: false,
   user: null,
   handleLogin: () => {},
   handleLogout: () => {},
-  handleRegister: () => {}
+  handleRegister: () => {},
 });
 
 export const AuthProvider = ({ children }) => {
-    // checking if user is authenticated
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    // storing user data
-    const [user, setUser] = useState(null);
-  
+  // checking if user is authenticated
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // storing user data
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
-    // user registration
+  // user registration
   const handleRegister = (userData) => {
-    setIsAuthenticated(true);    
+    setIsAuthenticated(true);
     setUser(userData);
-    
   };
 
-    // user login
+  // user login
   const handleLogin = (userData) => {
-    setIsAuthenticated(true);    
+    setIsAuthenticated(true);
     setUser(userData);
-    
   };
-
   const handleLogout = () => {
-    setIsAuthenticated(false);
-    setUser(null);
-    
+    logout()
+      .then(() => {
+        setIsAuthenticated(false);
+        setUser(null);
+        localStorage.removeItem("token");
+        setAuthToken(null);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Logout failed:", error);
+      });
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, handleLogin, handleLogout, handleRegister }}>
-     {children}
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        user,
+        handleLogin,
+        handleLogout,
+        handleRegister,
+      }}
+    >
+      {children}
     </AuthContext.Provider>
   );
 };
