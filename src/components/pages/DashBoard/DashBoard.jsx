@@ -28,18 +28,20 @@ function Dashboard() {
 
   return (
     <div>
-        <Layout>
+      <Layout>  
       <h1>Dashboard</h1>
+      
       <Button variant="primary" onClick={handleLogout}>
         Logout
       </Button>
       <Button variant="primary" onClick={handleShow}>
         Create New Post
       </Button>
-      </Layout>
+      
       <Suspense fallback={<div>Loading...</div>}>
         {show && <PostModal show={show} onHide={() => setShow(false)} />}
       </Suspense>
+      </Layout>
     </div>
   );
 }
