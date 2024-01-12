@@ -1,129 +1,122 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-
-import Upload from "../../assets/upload.png";
-
-import styles from "../../styles/PostCreateEditForm.module.css";
-import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import Asset from "../../components/Asset";
 import { Image } from "react-bootstrap";
 
-function PostCreateForm() {
-  const [errors, setErrors] = useState({});
+function PostCreateForm({ formData, setFormData, onResetAndClose }) {
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value,
+        }));
+    };
 
-  const [postData, setPostData] = useState({
-    title: "",
-    content: "",
-    image: "",
-  });
-  const { title, content, image } = postData;
+    const handleChangeImage = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                image: URL.createObjectURL(file),
+                imageFile: file, 
+            }));
+        }
+    };
 
-  const handleChange = (event) => {
-    setPostData({
-      ...postData,
-      [event.target.name]: event.target.value,
-    });
-  };
+    const handleCreatePost = async (event) => {
+        event.preventDefault();
+        
+        createPost(
+            formData.title,
+            formData.imageFile, 
+            formData.ingredients,
+            formData.recipe,
+            formData.cookingTime
+        )
+            .then((data) => {
+                console.log('Post created successfully:', data);
+                onResetAndClose(); 
+            })
+            .catch((error) => {
+                console.error('Error creating post:', error);
+            });
+    };
 
-  const handleChangeImage = (event) => {
-    if (event.target.files.length) {
-      URL.revokeObjectURL(image);
-      setPostData({
-        ...postData,
-        image: URL.createObjectURL(event.target.files[0]),
-      });
-    }
-  };
+    return (
+        <form id="postCreateForm" onSubmit={handleCreatePost}>
+            <div className="mb-3">
+                {formData.image && (
+                    <div className="preview">
+                        <Image src={formData.image} alt="Recipe Preview" fluid />
+                    </div>
+                )}
+                <label htmlFor="image" className="form-label">Image:</label>
+                <input 
+                    type="file" 
+                    className="form-control" 
+                    id="image" 
+                    name="image" 
+                    onChange={handleChangeImage}
+                />
+                <button type="button" className="btn btn-primary mt-2">Upload</button>
+                <button type="button" className="btn btn-primary mt-2">Change image</button>
+            </div>
 
-  const textFields = (
-    <div className="text-center">
-      <Form.Group>
-        <Form.Label>Title</Form.Label>
-        <Form.Control
-          type="text"
-          name="title"
-          value={title}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Content</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={6}
-          name="content"
-          value={content}
-          onChange={handleChange}
-        />
-      </Form.Group>
+            <div className="mb-3">
+                <label htmlFor="title" className="form-label">Title:</label>
+                <input 
+                    type="text" 
+                    className="form-control" 
+                    id="title" 
+                    name="title" 
+                    placeholder="Recipe Title"
+                    value={formData.title}
+                    onChange={handleChange}
+                />
+            </div>
 
-      <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
-        onClick={() => {}}
-      >
-        cancel
-      </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        create
-      </Button>
-    </div>
-  );
+            <div className="mb-3">
+                <label htmlFor="ingredients" className="form-label">Ingredients:</label>
+                <textarea 
+                    className="form-control" 
+                    id="ingredients" 
+                    name="ingredients" 
+                    rows="4" 
+                    placeholder="Ingredient 1&#10;Ingredient 2&#10;Ingredient 3"
+                    value={formData.ingredients}
+                    onChange={handleChange}
+                ></textarea>
+            </div>
 
-  return (
-    <Form>
-      <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-          <Container
-            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-          >
-            <Form.Group className="text-center">
-              {image ? (
-                <>
-                  <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
-                  </figure>
-                  <div>
-                    <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                      htmlFor="image-upload"
-                    >
-                      Change the image
-                    </Form.Label>
-                  </div>
-                </>
-              ) : (
-                <Form.Label
-                  className="d-flex justify-content-center"
-                  htmlFor="image-upload"
-                >
-                  <Asset
-                    src={Upload}
-                    message="Click or tap to upload an image"
-                  />
-                </Form.Label>
-              )}
+            <div className="mb-3">
+                <label htmlFor="recipe" className="form-label">Recipe:</label>
+                <textarea 
+                    className="form-control" 
+                    id="recipe" 
+                    name="recipe" 
+                    rows="6" 
+                    placeholder="Recipe instructions..."
+                    value={formData.recipe}
+                    onChange={handleChange}
+                ></textarea>
+            </div>
 
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-              />
-            </Form.Group>
-            <div className="d-md-none">{textFields}</div>
-          </Container>
-        </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-          <Container className={appStyles.Content}>{textFields}</Container>
-        </Col>
-      </Row>
-    </Form>
-  );
+            <div className="mb-3">
+                <label htmlFor="cookingTime" className="form-label">Cooking Time:</label>
+                <input 
+                    type="text" 
+                    className="form-control" 
+                    id="cookingTime" 
+                    name="cookingTime" 
+                    placeholder="Cooking Time"
+                    value={formData.cookingTime}
+                    onChange={handleChange}
+                />
+            </div>
+            
+        </form>
+    );
 }
 
 export default PostCreateForm;

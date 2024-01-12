@@ -56,10 +56,8 @@ function AuthModal({ show, handleClose }) {
                   </Button>
                 </div>
                 <div className="mt-3 text-center">
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-                  </div>
-                </div>
+                <div className="g-signin2" data-onsuccess="onSignIn"></div>
+                  </div>                
               </>
             )}
             {!isLoginActive && !showProfileSetup && (

@@ -4,6 +4,26 @@ const API_URL = import.meta.env.VITE_API_URL;
 const API_PROFILE_URL = import.meta.env.VITE_API_IMAGE_URL;
 const API_SIGNATURE = import.meta.env.VITE_API_SIGNATURE;
 
+const API_POSTS_URL = import.meta.env.VITE_API_POSTS_URL;
+
+export const createPost = async (title, image, ingredients, recipe, cookingTime) => {
+  const formData = new FormData();
+  formData.append('title', title);
+  formData.append('image', image);
+  formData.append('ingredients', ingredients);
+  formData.append('recipe', recipe);
+  formData.append('cookingTime', cookingTime);
+
+  const response = await axios.post(API_POSTS_URL, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+
+  return response.data;
+};
+
+
 // Function to register a new user
 export const register = (username, email, password, confirm_password) => {
   return axios.post(`${API_URL}register/`, {
