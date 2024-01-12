@@ -34,10 +34,11 @@ function Dashboard() {
       <Button variant="primary" onClick={handleLogout}>
         Logout
       </Button>
+      <div>
       <Button variant="primary" onClick={handleShow}>
         Create New Post
       </Button>
-      
+      </div>
       <Suspense fallback={<div>Loading...</div>}>
         {show && <PostModal show={show} onHide={() => setShow(false)} />}
       </Suspense>
