@@ -16,7 +16,7 @@ function App() {
   const { isAuthenticated, handleLogout } = useContext(AuthContext);
 
   return (
-    <Router>
+    
       <Layout
         showModal={showModal}
         setShowModal={setShowModal}
@@ -32,7 +32,7 @@ function App() {
           </Route>
         </Routes>
       </Layout>
-    </Router>
+    
   );
 }
 
