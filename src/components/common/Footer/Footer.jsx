@@ -5,7 +5,7 @@ function Footer() {
   return (
    <footer className='container text-center'>
     
-     <h3>2024 Recipe Repository</h3>
+     <h6>2024 Recipe Repository</h6>
     <p className='footer-sub-text'>&copy; . All rights reserved.</p>
 
     </footer>

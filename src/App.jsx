@@ -39,7 +39,7 @@ function App() {
 
 const LandingPage = () => (
   <div>
-    <h1>Recipe Repository</h1>
+    
   </div>
 );
 
