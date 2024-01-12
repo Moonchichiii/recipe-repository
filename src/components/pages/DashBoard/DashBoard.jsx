@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import { logout } from "../../../service/Api";
+import Layout from "../../../styles/Layout/Layout";
 
 const PostModal = lazy(() => import("../../pages/Posts/PostsModal/PostModal"));
 
@@ -27,6 +28,7 @@ function Dashboard() {
 
   return (
     <div>
+        <Layout>
       <h1>Dashboard</h1>
       <Button variant="primary" onClick={handleLogout}>
         Logout
@@ -34,6 +36,7 @@ function Dashboard() {
       <Button variant="primary" onClick={handleShow}>
         Create New Post
       </Button>
+      </Layout>
       <Suspense fallback={<div>Loading...</div>}>
         {show && <PostModal show={show} onHide={() => setShow(false)} />}
       </Suspense>

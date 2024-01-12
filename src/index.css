@@ -67,9 +67,12 @@ th {
 }
 
 /* 3. Base Styles */
-html,
-body {
-    height: 100vh;
+html {
+    height: 100%; 
+}
+
+body, html {
+    height: 100vh;    
     -webkit-tap-highlight-color: transparent;
     font-family: 'Afacad', sans-serif;
     font-size: var(--font-regular);
@@ -80,11 +83,19 @@ body {
 
 body {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
 }
 
 /* 4. Main Layout */
+header {
+    position: relative;
+    z-index: 1060;
+    background-color: var(--main-bg-color);    
+}
 
+main {
+    flex: 1;
+}
 
 .footer {
     background-color: var(--footer-bg-color);

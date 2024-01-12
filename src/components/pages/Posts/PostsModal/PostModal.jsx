@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import PostCreateForm from "../../../PostsForm/PostForm";
-
+import PostCreateForm from '../../Posts/PostsForm/PostForm';
 function PostModal({ show, onHide }) {
   const initialFormState = {
     title: "",
