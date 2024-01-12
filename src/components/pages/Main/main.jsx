@@ -1,0 +1,14 @@
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+
+export class main extends Component {
+  static propTypes = {}
+
+  render() {
+    return (
+      <div>main</div>
+    )
+  }
+}
+
+export default main
