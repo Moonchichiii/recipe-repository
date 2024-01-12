@@ -24,12 +24,14 @@ function Dashboard() {
 
   return (
     <div>
+      <PostModal />
       <h1>Dashboard</h1>
       <Button variant="primary" onClick={handleLogout}>
         Logout
       </Button>
       
-      <PostModal />
+     
+      
     </div>
   );
 }
