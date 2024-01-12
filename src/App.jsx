@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { AuthContext } from "./context/AuthContext";
 import ProtectedRoute from "./components/Auth/Protectedroute/ProtectedRoute";
-import Layout from "./styles/Layout/Layout";
+import Layout from "./components/common/Layout/Layout"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.module.css";
 

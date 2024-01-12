@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import { logout } from "../../../service/Api";
-import Layout from "../../../styles/Layout/Layout";
+import Layout from "../../common/Layout/Layout";
 
 const PostModal = lazy(() => import("../../pages/Posts/PostsModal/PostModal"));
 
