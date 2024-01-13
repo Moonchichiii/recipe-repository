@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
-import Layout from "../Layout/LayOut";
+import Layout from "../LayOut/Layout";
 
 
 
