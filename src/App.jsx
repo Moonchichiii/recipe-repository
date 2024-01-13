@@ -6,7 +6,7 @@ import Layout from "./components/common/MainLayout/Layout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.module.css";
 
-const Dashboard = lazy(() => import("./components/pages/DashBoard/DashBoard"));
+const Dashboard = lazy(() => import("./components/DashBoard/DashBoard"));
 const ProfileSetup = lazy(() =>
   import("./components/Auth/Forms/ProfileSetup/ProfileSetup")
 );
