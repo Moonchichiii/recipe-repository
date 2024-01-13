@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
-import Layout from "../common/MainLayOut/LayOut";
+import Layout from "../Layout/LayOut";
+
 
 
 
@@ -10,12 +11,12 @@ function Dashboard() {
 
   return (  
 
-    <Layout>
+    <Layout >
       <h1>Dashboard</h1>
       <Suspense fallback={<div>Loading...</div>}>
         {show && <PostModal show={show} onHide={() => setShow(false)} />}
       </Suspense>
-    </Layout>
+      </Layout>
     
   );
   }

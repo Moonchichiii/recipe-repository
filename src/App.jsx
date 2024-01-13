@@ -2,7 +2,7 @@ import React, { useState, lazy, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 import ProtectedRoute from "./components/Auth/Protectedroute/ProtectedRoute";
-import Layout from "./components/common/MainLayOut/LayOut";
+import Layout from "./components/Layout/LayOut";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.module.css";
 
