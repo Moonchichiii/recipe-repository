@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useState, useContext } from "react";
 import { Button, Container,Navbar, Nav,Form,Offcanvas,} from "react-bootstrap";
-import { AuthContext } from "../..//../context/AuthContext";
+import { AuthContext } from "../../../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faList, faHeart,faPlusSquare, faUserCircle,faSignOutAlt,faSearch,} from "@fortawesome/free-solid-svg-icons";
 
