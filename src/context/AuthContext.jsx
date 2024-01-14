@@ -30,28 +30,28 @@ export const AuthProvider = ({ children }) => {
     setUser(userData);
   };
   
-  const handleLogout = () => {
-    console.log("Initiating logout process");
-    logout()
-      .then(() => {
-        console.log("Logout successful");
-        setIsAuthenticated(false);
-        setUser(null);
-        localStorage.removeItem("token");
-        navigate('/');
-      })
-      .catch((error) => {
-        console.error("Logout failed:", error);
-      });
+  const logout = async () => {
+    try {
+      await Logout();
+      
+      localStorage.removeItem("token");
+      setAuthToken(null);
+      setIsAuthenticated(false);
+      setUser(null);
+      
+      navigate('/');
+    } catch (error) {
+      console.error("Logout failed:", error);
+      
+    }
   };
-  
   return (
     <AuthContext.Provider
       value={{
         isAuthenticated,
         user,
         handleLogin,
-        handleLogout,
+        handleLogout: logout,
         handleRegister,
       }}
     >
