@@ -29,14 +29,14 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(true);
     setUser(userData);
   };
+  
   const handleLogout = () => {
     logout()
       .then(() => {
         setIsAuthenticated(false);
         setUser(null);
         localStorage.removeItem("token");
-        setAuthToken(null);
-        navigate("/");
+        navigate('/');
       })
       .catch((error) => {
         console.error("Logout failed:", error);
