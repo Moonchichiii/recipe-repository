@@ -1,5 +1,6 @@
 import React, { Suspense, lazy, useState, useContext } from "react";
-import { Button, Container,Navbar, Nav,Form,Offcanvas,} from "react-bootstrap";
+import { Button, Container,Navbar, Nav,Form,Offcanvas } from "react-bootstrap";
+import { LinkContainer } from 'react-router-bootstrap';
 import { AuthContext } from "../../../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faList, faHeart,faPlusSquare, faUserCircle,faSignOutAlt,faSearch,} from "@fortawesome/free-solid-svg-icons";
@@ -8,14 +9,18 @@ import "./Navbar.module.css";
 
 const AuthModal = lazy(() => import("../Modal/AuthModal"));
 
-function Navgation() {
-
+function Navigation() {
   const { isAuthenticated, handleLogout } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [showOffCanvas, setShowOffCanvas] = useState(false);
 
   const handleOffCanvasClose = () => setShowOffCanvas(false);
   const toggleOffCanvas = () => setShowOffCanvas((s) => !s);
+
+  const handleLogoutClick = (e) => {
+    e.preventDefault();
+    handleLogout();
+  };
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary mb-3">
@@ -39,37 +44,49 @@ function Navgation() {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href="#feed">
-                <FontAwesomeIcon icon={faHome} className="me-1" />
-                Home
-              </Nav.Link>
-              <Nav.Link href="#home">About</Nav.Link>
-              <Nav.Link href="#home">Contact</Nav.Link>
+              <LinkContainer to="/home">
+                <Nav.Link>
+                  <FontAwesomeIcon icon={faHome} className="me-1" />
+                  Home
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/about">
+                <Nav.Link>About</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/contact">
+                <Nav.Link>Contact</Nav.Link>
+              </LinkContainer>
+
               {isAuthenticated && (
                 <>
-                  <Nav.Link href="#dashboard">
-                    <FontAwesomeIcon icon={faList} className="me-1" />
-                    Feed
-                  </Nav.Link>
-                  <Nav.Link href="#liked">
-                    <FontAwesomeIcon icon={faHeart} className="me-1" />
-                    Liked
-                  </Nav.Link>
-                  <Nav.Link href="#add-post">
-                    <FontAwesomeIcon
-                      icon={faPlusSquare}
-                      className="me-1
-"
-                    />
-                    Add Post
-                  </Nav.Link>
-                  <Nav.Link href="#profile">
-                    <FontAwesomeIcon icon={faUserCircle} className="me-1" />
-                    Profile
-                  </Nav.Link>
+                  <LinkContainer to="/feed">
+                    <Nav.Link>
+                      <FontAwesomeIcon icon={faList} className="me-1" />
+                      Feed
+                    </Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/liked">
+                    <Nav.Link>
+                      <FontAwesomeIcon icon={faHeart} className="me-1" />
+                      Liked
+                    </Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/add-post">
+                    <Nav.Link>
+                      <FontAwesomeIcon icon={faPlusSquare} className="me-1" />
+                      Add Post
+                    </Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/profile">
+                    <Nav.Link>
+                      <FontAwesomeIcon icon={faUserCircle} className="me-1" />
+                      Profile
+                    </Nav.Link>
+                  </LinkContainer>
                 </>
               )}
             </Nav>
+
             <Form className="d-flex search-container">
               <Form.Control
                 type="search"
@@ -82,9 +99,11 @@ function Navgation() {
             </Form>
 
             {isAuthenticated ? (
-              <Nav.Link onClick={handleLogout} className="accounts-link">
-                <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
-              </Nav.Link>
+              <LinkContainer to="/" onClick={handleLogoutClick}>
+                <Nav.Link className="accounts-link">
+                  <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
+                </Nav.Link>
+              </LinkContainer>
             ) : (
               <Nav.Link
                 onClick={() => setShowModal(true)}
@@ -97,6 +116,7 @@ function Navgation() {
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
+
       <Suspense fallback={<div>Loading...</div>}>
         {showModal && (
           <AuthModal show={showModal} handleClose={() => setShowModal(false)} />
@@ -104,6 +124,5 @@ function Navgation() {
       </Suspense>
     </Navbar>
   );
-}
-
-export default Navgation;
+        
+        export default Navigation;
