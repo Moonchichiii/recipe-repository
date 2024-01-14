@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from '../components/common/Navbar/Navbar';
+import Navbar from '../components/common/Navbar/Navbar';
 import Footer from "../components/common/Footer/Footer";
 
 
@@ -12,7 +12,7 @@ const Layout = ({
 }) => {
   return (
     <>
-      <NavBar
+      <Navbar
         showModal={showModal}
         setShowModal={setShowModal}
         isAuthenticated={isAuthenticated}

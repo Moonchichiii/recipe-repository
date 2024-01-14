@@ -4,11 +4,12 @@ import { AuthContext } from "../../../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faList, faHeart,faPlusSquare, faUserCircle,faSignOutAlt,faSearch,} from "@fortawesome/free-solid-svg-icons";
 
-import "./NavBar.module.css";
+import "./Navbar.module.css";
 
 const AuthModal = lazy(() => import("../Modal/AuthModal"));
 
-function NavBar() {
+function Navgation() {
+
   const { isAuthenticated, handleLogout } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [showOffCanvas, setShowOffCanvas] = useState(false);
@@ -105,4 +106,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default Navgation;
