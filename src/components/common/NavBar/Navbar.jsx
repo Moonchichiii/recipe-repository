@@ -1,4 +1,6 @@
-import React, { Suspense, lazy, useState, useContext, Link } from "react";
+import React, { Suspense, lazy, useState, useContext } from "react";
+import { Link } from 'react-router-dom';
+
 import { Button, Container,Navbar, Nav,Form,Offcanvas } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
 import { AuthContext } from "../../../context/AuthContext";
@@ -101,20 +103,18 @@ function Navigation() {
             </Form>
 
             {isAuthenticated ? (
-              
-                <Link className="accounts-link" onClick={handleLogoutClick}>
-                  <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
-                </Link>
-              
-            ) : (
-              <Nav.Link
-                onClick={() => setShowModal(true)}
-                className="accounts-link"
-              >
-                <FontAwesomeIcon icon={faUserCircle} className="me-1" />{" "}
-                Accounts
-              </Nav.Link>
-            )}
+  <Link to="/" className="accounts-link" onClick={handleLogoutClick}>
+  <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
+</Link>
+) : (
+  <Nav.Link
+    onClick={() => setShowModal(true)}
+    className="accounts-link"
+  >
+    <FontAwesomeIcon icon={faUserCircle} className="me-1" />{" "}
+    Accounts
+  </Nav.Link>
+)}
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
