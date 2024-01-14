@@ -1,9 +1,10 @@
-import React, { Suspense, lazy, useState, useContext } from "react";
+import React, { Suspense, lazy, useState, useContext, Link } from "react";
 import { Button, Container,Navbar, Nav,Form,Offcanvas } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
 import { AuthContext } from "../../../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faList, faHeart,faPlusSquare, faUserCircle,faSignOutAlt,faSearch,} from "@fortawesome/free-solid-svg-icons";
+
 
 import "./Navbar.module.css";
 
@@ -100,11 +101,11 @@ function Navigation() {
             </Form>
 
             {isAuthenticated ? (
-              <LinkContainer to="/" onClick={handleLogoutClick}>
-                <Nav.Link className="accounts-link">
+              
+                <Link className="accounts-link" onClick={handleLogoutClick}>
                   <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
-                </Nav.Link>
-              </LinkContainer>
+                </Link>
+              
             ) : (
               <Nav.Link
                 onClick={() => setShowModal(true)}

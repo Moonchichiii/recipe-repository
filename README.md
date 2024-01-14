@@ -13,8 +13,9 @@
 6. [Dependencies](#dependencies)
 7. [Development Environment](#development-environment)
 8. [Testing](#testing)
-9. [Deployment](#deployment)
-10. [Credits & Tutorials](#credits-&-tutorials)
+9. [Bugs & fixes](#bugs-&-fixes)
+10. [Deployment](#deployment)
+11. [Credits & Tutorials](#credits-&-tutorials)
 
 ----------
 
@@ -97,6 +98,14 @@ Prebuild using codepen.io
 ----------
 
 ## Testing
+
+
+
+
+## Bugs & fixes
+
+
+On signature profile image :1 was added to the url. 
 
 
 [Back to top](#table-of-contents)
