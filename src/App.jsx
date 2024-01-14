@@ -1,5 +1,5 @@
 import React, { useState, lazy, useContext } from "react";
-import { BrowserRouter as Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router,Routes, Route } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 import Layout from "./Layout/Layout";
 import ProtectedRoute from "./components/Auth/Protectedroute/ProtectedRoute";
