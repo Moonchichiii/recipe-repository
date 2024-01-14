@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-export class main extends Component {
+export class mainpage extends Component {
   static propTypes = {}
 
   render() {
@@ -11,4 +11,4 @@ export class main extends Component {
   }
 }
 
-export default main
+export default mainpage 

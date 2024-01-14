@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from '../components/common/NavBar/NavBar';
 import Footer from "../components/common/Footer/Footer";
 
+
 const Layout = ({
   children,
   showModal,
