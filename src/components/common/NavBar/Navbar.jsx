@@ -98,7 +98,7 @@ function Navigation() {
             </Form>
 
             {isAuthenticated ? (
-  <a href="/" className="accounts-link" onClick={handleLogoutClick}>
+  <a href="/" className="accounts-link" onClick={handleLogout}>
     <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
   </a>
 ) : (
