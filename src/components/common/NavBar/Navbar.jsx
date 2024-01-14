@@ -1,6 +1,4 @@
 import React, { Suspense, lazy, useState, useContext } from "react";
-import { Link } from 'react-router-dom';
-
 import { Button, Container,Navbar, Nav,Form,Offcanvas } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
 import { AuthContext } from "../../../context/AuthContext";
@@ -21,10 +19,7 @@ function Navigation() {
   const handleOffCanvasClose = () => setShowOffCanvas(false);
   const toggleOffCanvas = () => setShowOffCanvas((s) => !s);
 
-  const handleLogoutClick = (e) => {
-    e.preventDefault();
-    handleLogout();
-  };
+  
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary mb-3">
@@ -103,16 +98,12 @@ function Navigation() {
             </Form>
 
             {isAuthenticated ? (
-  <Link to="/" className="accounts-link" onClick={handleLogoutClick}>
-  <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
-</Link>
+  <a href="/" className="accounts-link" onClick={handleLogoutClick}>
+    <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
+  </a>
 ) : (
-  <Nav.Link
-    onClick={() => setShowModal(true)}
-    className="accounts-link"
-  >
-    <FontAwesomeIcon icon={faUserCircle} className="me-1" />{" "}
-    Accounts
+  <Nav.Link onClick={() => setShowModal(true)} className="accounts-link">
+    <FontAwesomeIcon icon={faUserCircle} className="me-1" /> Accounts
   </Nav.Link>
 )}
           </Offcanvas.Body>
