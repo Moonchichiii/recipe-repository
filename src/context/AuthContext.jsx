@@ -31,8 +31,10 @@ export const AuthProvider = ({ children }) => {
   };
   
   const handleLogout = () => {
+    console.log("Initiating logout process");
     logout()
       .then(() => {
+        console.log("Logout successful");
         setIsAuthenticated(false);
         setUser(null);
         localStorage.removeItem("token");
@@ -42,7 +44,7 @@ export const AuthProvider = ({ children }) => {
         console.error("Logout failed:", error);
       });
   };
-
+  
   return (
     <AuthContext.Provider
       value={{

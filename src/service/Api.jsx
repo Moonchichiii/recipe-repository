@@ -25,17 +25,21 @@ export const login = (username, password) => {
 
 // Logout Call
 export const logout = () => {
+  console.log(`Logging out with URL: ${API_URL}logout/`);
   return axios.post(`${API_URL}logout/`);
 };
 
 // Removes auth token on logout
 export const setAuthToken = (token) => {
   if (token) {
+    console.log(`Setting auth token: ${token}`);
     axios.defaults.headers.common["Authorization"] = `Token ${token}`;
   } else {
+    console.log("Removing auth token");
     delete axios.defaults.headers.common["Authorization"];
   }
 };
+
 
 
 // Generic fetch signature for images
