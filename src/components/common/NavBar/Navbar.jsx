@@ -10,6 +10,7 @@ import "./Navbar.module.css";
 const AuthModal = lazy(() => import("../Modal/AuthModal"));
 
 function Navigation() {
+
   const { isAuthenticated, handleLogout } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [showOffCanvas, setShowOffCanvas] = useState(false);
@@ -87,7 +88,7 @@ function Navigation() {
               )}
             </Nav>
 
-            <Form className="d-flex search-container">
+            <Form className="d-flex search-container  mx-auto">
               <Form.Control
                 type="search"
                 placeholder="Search..."
@@ -124,5 +125,5 @@ function Navigation() {
       </Suspense>
     </Navbar>
   );
-        
-        export default Navigation;
+}        
+export default Navigation;
