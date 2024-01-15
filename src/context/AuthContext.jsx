@@ -19,10 +19,12 @@ export const AuthProvider = ({ children }) => {
   const handleRegister = (userData) => {
     setIsAuthenticated(true);
     setUser(userData);
+    console.log("User registered:", userData); 
   };
 
   // user login
   const handleLogin = (userData) => {
+    console.log("Logging in with username:", username);
     setIsAuthenticated(true);
     setUser(userData);
   };
