@@ -11,11 +11,10 @@ export const AuthContext = createContext({
   handleRegister: () => {}
 });
 
-const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-
   // user registration
   const handleRegister = (userData) => {
     setIsAuthenticated(true);
