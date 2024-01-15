@@ -4,7 +4,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { AuthContext } from "../../../../context/AuthContext";
 import { login, register, setAuthToken } from "../../../../service/Api";
 
-function RegistrationForm() {
+function RegistrationForm({ onSuccessfulRegistration }) {
   // defining state variables
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
