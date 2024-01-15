@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
 import axios from "axios";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { AuthContext } from "../../../../context/AuthContext";
+
 import { fetchCloudinarySignature, updateProfile } from "../../../../service/Api";
 
 
@@ -13,6 +14,18 @@ function ProfileSetup({onProfileUpdate}) {
   const [profileImage, setProfileImage] = useState(null);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+
+// Handle image change
+const handleImageChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    setProfileImage(file);
+    setProfileImagePreview(URL.createObjectURL(file));
+  } else {
+    setProfileImagePreview(defaultImageUrl);
+  }
+};
+
   // Handle image upload to Cloudinary
   const handleImageUpload = async (file) => {
     const formData = new FormData();
@@ -32,12 +45,14 @@ function ProfileSetup({onProfileUpdate}) {
       return response.data.secure_url;
       
     } catch (error) {
-      // Display error message to the user
+
       console.error("Error uploading image:", error.message);
       alert("Error uploading image. Please try again.");
       return null;
     }
   };
+
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,26 +63,16 @@ function ProfileSetup({onProfileUpdate}) {
   
     if (imageUrl) {
       try {
-        await updateProfile(user.id, bio, imageUrl);
-        onProfileUpdate();
-        navigate("/dashboard"); 
-        
+      await updateProfile(user.id, bio, imageUrl);
+      onProfileUpdate(); 
+      navigate("/dashboard"); 
       } catch (error) {
-        console.error("Error updating profile:", error.message);
-        alert("Error updating profile. Please try again.");
+      console.error("Error updating profile:", error.message);
+      alert("Error updating profile. Please try again.");
       }
-    }
-  };
-  // Handle image change
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setProfileImage(file);
-      setProfileImagePreview(URL.createObjectURL(file));
-    } else {
-      setProfileImagePreview(defaultImageUrl);
-    }
-  };
+      }
+      };
+  
   return (
     <div className="profile-setup-container">
       {profileImagePreview && (

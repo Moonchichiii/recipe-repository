@@ -2,6 +2,7 @@ import React, { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout, setAuthToken } from "../service/Api";
 
+
 // context for authentication,
 export const AuthContext = createContext({
   isAuthenticated: false,
@@ -10,13 +11,6 @@ export const AuthContext = createContext({
   handleLogout: () => {},
   handleRegister: () => {},
 });
-
-export const AuthProvider = ({ children }) => {
-  // checking if user is authenticated
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // storing user data
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
 
   // user registration
   const handleRegister = (userData) => {
@@ -30,21 +24,35 @@ export const AuthProvider = ({ children }) => {
     setUser(userData);
   };
   
-  const logout = async () => {
+  //  user logout 
+  const handleLogout = async () => {
     try {
-      await Logout();
-      
+      await logout(); 
+  
       localStorage.removeItem("token");
       setAuthToken(null);
       setIsAuthenticated(false);
       setUser(null);
-      
-      navigate('/');
+  
+       navigate('/');
     } catch (error) {
       console.error("Logout failed:", error);
-      
     }
   };
+
+
+
+
+
+
+export const AuthProvider = ({ children }) => {
+  // checking if user is authenticated
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // storing user data
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+
   return (
     <AuthContext.Provider
       value={{
