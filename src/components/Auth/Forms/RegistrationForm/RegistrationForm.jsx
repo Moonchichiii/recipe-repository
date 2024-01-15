@@ -5,6 +5,7 @@ import { AuthContext } from "../../../../context/AuthContext";
 import { login, register, setAuthToken } from "../../../../service/Api";
 
 function RegistrationForm({ onSuccessfulRegistration }) {
+  // defining state variables
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,9 +13,11 @@ function RegistrationForm({ onSuccessfulRegistration }) {
   const [error, setError] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  // accessing authentication context
   const { handleRegister } = useContext(AuthContext);
 
   const validateInputs = () => {
+     // validating user inputs
     if (!username || !email || !password || !confirmPassword) {
       setError({ general: ["All fields are required."] });
       return false;
@@ -25,7 +28,7 @@ function RegistrationForm({ onSuccessfulRegistration }) {
     }
     return true;
   };
-
+// form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateInputs()) return;
@@ -35,7 +38,7 @@ function RegistrationForm({ onSuccessfulRegistration }) {
         localStorage.setItem("token", response.data.token);
         handleRegister(response.data);
         setIsRegistered(true);
-        onSuccessfulRegistration();
+        onSuccessfulRegistration();        
       })
       .catch((err) => {
         if (err.response && err.response.data) {

@@ -31,12 +31,14 @@ const handleImageChange = (e) => {
     const formData = new FormData();
     formData.append("file", file);
     try {
+      // fetching cloudinary signature for secure image upload
       const signatureData = await fetchCloudinarySignature();
       formData.append("timestamp", signatureData.timestamp);
       formData.append("signature", signatureData.signature);
       formData.append("api_key", signatureData.api_key);
       formData.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
       
+      // Uploading the image to cloudinary      
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dakjlrean/image/upload",
         formData
@@ -63,6 +65,7 @@ const handleImageChange = (e) => {
   
     if (imageUrl) {
       try {
+    // updating user profile with bio, profile image
       await updateProfile(user.id, bio, imageUrl);
       onProfileUpdate(); 
       navigate("/dashboard"); 

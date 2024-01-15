@@ -5,10 +5,12 @@ import { AuthContext } from "../../../../context/AuthContext";
 import { login, setAuthToken } from "../../../../service/Api";
 
 function LoginForm({ onCloseModal }) {
+   // accessing authentication context
   const { isAuthenticated, handleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
+     // direct to the dashboard if user is authenticated,
     if (isAuthenticated) {
       navigate("/dashboard");
     }
@@ -22,7 +24,9 @@ function LoginForm({ onCloseModal }) {
     e.preventDefault();
     login(username, password)
       .then((response) => {
+        console.log(response.data);
         const { token } = response.data;
+        // storing authentication token in local storage
         localStorage.setItem("token", token);
         setAuthToken(token);
         handleLogin(response.data);

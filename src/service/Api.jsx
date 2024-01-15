@@ -21,6 +21,7 @@ export const register = (username, email, password, confirm_password) => {
 // Login call 
 export const login = (username, password) => {
   return axios.post(`${API_URL}login/`, { username, password });
+  
 };
 
 // Logout Call

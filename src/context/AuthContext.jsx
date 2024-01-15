@@ -2,15 +2,19 @@ import React, { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout, setAuthToken } from "../service/Api";
 
-
 // context for authentication,
 export const AuthContext = createContext({
   isAuthenticated: false,
   user: null,
   handleLogin: () => {},
   handleLogout: () => {},
-  handleRegister: () => {},
+  handleRegister: () => {}
 });
+
+const AuthProvider = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   // user registration
   const handleRegister = (userData) => {
@@ -23,35 +27,20 @@ export const AuthContext = createContext({
     setIsAuthenticated(true);
     setUser(userData);
   };
-  
-  //  user logout 
+
+  //  user logout
   const handleLogout = async () => {
     try {
-      await logout(); 
-  
+      await logout();
       localStorage.removeItem("token");
       setAuthToken(null);
       setIsAuthenticated(false);
       setUser(null);
-  
-       navigate('/');
+      navigate("/");
     } catch (error) {
       console.error("Logout failed:", error);
     }
   };
-
-
-
-
-
-
-export const AuthProvider = ({ children }) => {
-  // checking if user is authenticated
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // storing user data
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
-
 
   return (
     <AuthContext.Provider
@@ -59,11 +48,13 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated,
         user,
         handleLogin,
-        handleLogout: logout,
-        handleRegister,
+        handleLogout,
+        handleRegister
       }}
     >
       {children}
     </AuthContext.Provider>
   );
 };
+
+export default AuthProvider;
