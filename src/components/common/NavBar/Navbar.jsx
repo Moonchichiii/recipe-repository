@@ -98,12 +98,11 @@ function Navigation() {
             </Form>
 
             {isAuthenticated ? (
-           <LinkContainer onClick={handleLogout}>
-           <Nav.Link className="accounts-link">
-             <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
-           </Nav.Link>
-         </LinkContainer>
-         
+              <LinkContainer to="/" onClick={handleLogout}>
+                <Nav.Link className="accounts-link">
+                  <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
+                </Nav.Link>
+              </LinkContainer>
             ) : (
               <Nav.Link
                 onClick={() => setShowModal(true)}
