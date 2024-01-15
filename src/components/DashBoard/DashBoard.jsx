@@ -6,6 +6,7 @@ import Layout from "../../Layout/Layout";
 
 
 function Dashboard() {  
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
   
 
