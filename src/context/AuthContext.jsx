@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout, setAuthToken } from "../service/Api";
 
@@ -11,25 +11,20 @@ export const AuthContext = createContext({
   handleRegister: () => {}
 });
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {  
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  // user registration
-  const handleRegister = (userData) => {
-    setIsAuthenticated(true);
-    setUser(userData);
-    console.log("User registered:", userData); 
-  };
 
-  // user login
+  // define the handleLogin function
   const handleLogin = (userData) => {
-    console.log("Logging in with username:", username);
+    console.log("Logging in with username:", userData.username); 
     setIsAuthenticated(true);
     setUser(userData);
+    navigate("/dashboard");
   };
 
-  //  user logout
+  // Define the handleLogout function
   const handleLogout = async () => {
     try {
       await logout();
@@ -41,6 +36,15 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error("Logout failed:", error);
     }
+  };
+
+  // Define the handleRegister function
+  const handleRegister = (userData, onSuccessfulRegistration) => { 
+    setIsAuthenticated(true);
+    setUser(userData);
+    console.log("User registered:", userData); 
+    handleLogin(userData); 
+    onSuccessfulRegistration();
   };
 
   return (

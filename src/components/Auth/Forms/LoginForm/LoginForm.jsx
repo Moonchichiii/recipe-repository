@@ -31,7 +31,7 @@ function LoginForm({ onCloseModal }) {
         setAuthToken(token);
         handleLogin(response.data);
         onCloseModal(); 
-      })
+              })
       .catch((error) => {
         if (error.response && error.response.data) {
           setError(error.response.data.message || "Login failed!");
