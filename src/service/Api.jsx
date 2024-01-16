@@ -26,10 +26,33 @@ export const login = (username, password) => {
 };
 
 // Logout Call
+
 export const logout = () => {
-  console.log(`Logging out with URL: ${API_URL}logout/`);
-  return axios.post(`${API_URL}logout/`);
+  const token = localStorage.getItem("token");
+  
+  if (!token) {
+    console.log("No token found, user not logged in.");
+    return Promise.reject("No token found");
+  }
+
+  console.log(`Logging out with token: ${token}`);
+  console.log(`Logout URL: ${API_URL}logout/`);
+
+  return axios.post(`${API_URL}logout/`, {}, {
+    headers: {
+      "Authorization": `Token ${token}`
+    }
+  }).then(response => {
+    console.log('Logout successful:', response);
+    return response;
+  }).catch(error => {
+    console.error('Logout error:', error);
+    throw error; // Re-throw the error for further handling
+  });
 };
+
+
+
 
 // Removes auth token on logout
 export const setAuthToken = (token) => {
@@ -57,17 +80,19 @@ export const fetchCloudinarySignature = async () => {
 };
 
 
+// handling the profile image not based userId instead using token (viewset) 
+// After receiving the signature from the server
 
-// handling the profile image After receiving the signature from the server
-export const updateProfile = async (userId, bio, profileImageUrl) => {
+export const updateProfile = async (bio, profileImageUrl) => {
   const token = localStorage.getItem("token") || "";
 
   const headers = {
     Authorization: `Token ${token}`,
   };
-
+ 
+  
   const response = await axios.patch(
-    `${API_PROFILE_URL}${userId}/`,
+    `${API_PROFILE_URL}`,
     {
       bio,
       profile_image: profileImageUrl,
@@ -77,6 +102,7 @@ export const updateProfile = async (userId, bio, profileImageUrl) => {
 
   return response.data;
 };
+
 
 // Call for posts
 
