@@ -1,14 +1,17 @@
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-export class mainpage extends Component {
-  static propTypes = {}
-
-  render() {
-    return (
-      <div>main</div>
-    )
-  }
+function mainpage() {
+  return (
+    <Container>
+      <Row>
+        <Col xs={{ order: 'last' }}>First, but last</Col>
+        <Col xs>Second, but unordered</Col>
+        <Col xs={{ order: 'first' }}>Third, but first</Col>
+      </Row>
+    </Container>
+  );
 }
 
 export default mainpage 
